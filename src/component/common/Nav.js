@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import {Fade} from 'reactstrap';
 import '../../style/Nav.css';
 import Search from '../../media/search.png';
+import LoginIcon from '../../media/user.png';
+
 const Nav = () => {
     const [openSearch,setOpenSearch] = useState(false);
     
@@ -24,6 +26,7 @@ const Nav = () => {
                             <li className='nav-item'><Link to='/'  className='nav-link nav-link-color-black mr-2'><strong>Industrial</strong></Link></li>
                             <li className='nav-item'><Link to='/'  className='nav-link nav-link-color-black mr-2'><strong>Sport</strong></Link></li>
                             <li className='nav-item'><Link className='nav-link nav-link-color-black mr-2' onClick={()=> setOpenSearch(true)}><img src={Search} style={{width:'1rem'}}/></Link></li>
+                            <li className='nav-item'><Link to = '/login' className='nav-link nav-link-color-black mr-2'><img src={LoginIcon} style={{width:'1.5rem'}}/></Link></li>
                         </ul>
                     </div>
                 </nav>
