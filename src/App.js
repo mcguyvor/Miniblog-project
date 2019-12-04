@@ -7,7 +7,7 @@ function App() {
     <Switch >
       <Route exact path = '/' component = {Main} />
       <Route exact path = '/createblog' component = {CreateBlog} />
-      <Route exact path = '/login' component = {C} />
+      <Route exact path = '/login' component = {CreateBlog} />
     </Switch>
   );
 }
