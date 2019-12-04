@@ -4,7 +4,7 @@ import Subscribe from '../component/common/Subscribe';
 import '../style/Main.css';
 const Main = () =>{
 
-
+   
 
     const renderTop = () =>{
         return(

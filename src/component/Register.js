@@ -1,7 +1,5 @@
 import React,{useState} from 'react';
-import {Link} from 'react-router-dom';
-import '../style/Login.css';
-const LogInPage = () =>{
+const Register = () =>{
 
     const initialInput = {email:''}
 
@@ -43,25 +41,33 @@ const LogInPage = () =>{
     }
 
 
-    const renderLoginForm = () =>{
+    const renderRegisterForm = () =>{
         return(
             
                     <div className='container vertical-center'>
-                        <form className='w-100'>
+                        <form className='w-100' onSubmit={handleOnSubmit}>
                             
                             <div className="form-group">
                                 <label for="InputEmail"><strong>Email address</strong></label>
                                 <input type="email" onChange = {handleChange} className="form-control" id="InputEmail" aria-describedby="emailHelp" name='email' placeholder='Email address'/>
                                 {errorMessage.emailError ?<small id="emailHelp" className="form-text text-danger">{errorMessage.emailError}</small> : null}
                             </div>
+
+                            <div className="form-group">
+                                <label for="InputPassword"><strong>Display Name</strong></label>
+                                <input type="password" onChange = {handleChange} className="form-control" id="InputPassword" name='password' placeholder='Display name'/>
+                            </div>
                             
                             <div className="form-group">
                                 <label for="InputPassword"><strong>Password</strong></label>
                                 <input type="password" onChange = {handleChange} className="form-control" id="InputPassword" name='password' placeholder='Password'/>
                             </div>
+
                             
-                            <button type="submit" className="btn btn-outline-success mr-2" onClick={handleOnSubmit}>Login</button>
-                            <button type="submit" className="btn btn-outline-primary"><Link to='register'>Sign In</Link></button>
+                            <button type="submit" onClick={handleOnSubmit} className="btn btn-outline-primary mr-2">Sign In</button>
+                            <button type="submit" className="btn btn-outline-danger"><Link to ='/'>Cancel</Link></button>
+
+
                         </form>
                     </div>
                 
@@ -69,8 +75,8 @@ const LogInPage = () =>{
     }
     return(
         <div>
-            {renderLoginForm()}
+            {renderRegisterForm()}
         </div>
     );
 }
-export default LogInPage;
+export default Register;
