@@ -1,10 +1,13 @@
 import React from 'react';
 import Main from './component/Main';
+import CreateBlog from './component/CreateBlog';
+import {Route,Switch} from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-        <Main/>
-    </div>
+    <Switch >
+      <Route exact path = '/' component = {Main} />
+      <Route exact path = '/createblog' component = {CreateBlog} />
+    </Switch>
   );
 }
 

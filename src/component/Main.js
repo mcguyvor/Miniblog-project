@@ -1,4 +1,6 @@
 import React from 'react';
+import Nav from './common/Nav';
+import '../style/Main.css';
 const Main = () =>{
     const renderTop = () =>{
         return(
@@ -6,14 +8,14 @@ const Main = () =>{
             <div className="container">
                 <div className="row align-items-stretch retro-layout-2">
                     <div className="col-md-4">
-                        <a href="single.html" className="h-entry mb-30 v-height gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                        <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
                         
                         <div className="text">
                             <h2>The AI magically removes moving objects from videos.</h2>
                             <span className="date">July 19, 2019</span>
                         </div>
                         </a>
-                        <a href="single.html" className="h-entry v-height gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                        <a href="single.html" className="h-entry v-height gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
                         
                         <div className="text">
                             <h2>The AI magically removes moving objects from videos.</h2>
@@ -22,7 +24,7 @@ const Main = () =>{
                         </a>
                     </div>
                     <div className="col-md-4">
-                        <a href="single.html" className="h-entry img-5 h-100 gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                        <a href="single.html" className="h-entry img-5 h-100 gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
                         
                         <div className="text">
                             <div className="post-categories mb-3">
@@ -35,14 +37,14 @@ const Main = () =>{
                         </a>
                     </div>
                     <div className="col-md-4">
-                        <a href="single.html" className="h-entry mb-30 v-height gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                        <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
                         
                         <div className="text">
                             <h2>The 20 Biggest Fintech Companies In America 2019</h2>
                             <span className="date">July 19, 2019</span>
                         </div>
                         </a>
-                        <a href="single.html" className="h-entry v-height gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                        <a href="single.html" className="h-entry v-height gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
                         
                         <div className="text">
                             <h2>The 20 Biggest Fintech Companies In America 2019</h2>
@@ -68,8 +70,8 @@ const Main = () =>{
                         </div>
 
                         <div className="row">
-                            <div className="col-lg-4 mb-4">
-                                <div className="entry2">
+                            <div className="col-lg-4 mb-4 ">
+                                <div className="entry2 hvr-float">
                                     <a href="single.html"><img src="https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}" alt="Image" className="img-fluid rounded"/></a>
                                         <div className="excerpt">
                                             <span className="post-category text-white bg-secondary mb-3">Politics</span>
@@ -95,7 +97,7 @@ const Main = () =>{
     const renderPagination = () =>{
         return(
             <div className='container'>
-                <div className='row text-center pt-5 border-top'>
+                <div className='row text-center pt-5 border-top mb-4'>
                     <div className='col-md-12 col-lg-12'>
                         <div className='custom-pagination'>
                             <span>1</span>
@@ -120,40 +122,40 @@ const Main = () =>{
                     <div className="row align-items-stretch retro-layout">
                     
                     <div className="col-md-5 order-md-2">
-                        <a href="single.html" className="hentry img-1 h-100 gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
-                        <span className="post-category text-white bg-danger">Technology</span>
-                        <div className="text">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
+                        <a href="single.html" className="hentry img-1 h-100 gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                            <span className="post-category text-white bg-danger">Technology</span>
+                            <div className="text">
+                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                                <span>February 12, 2019</span>
+                            </div>
                         </a>
                     </div>
 
                     <div className="col-md-7">
                         
-                        <a href="single.html" className="hentry img-2 v-height mb30 gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
-                        <span className="post-category text-white bg-success">Finance</span>
-                        <div className="text text-sm">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
+                        <a href="single.html" className="hentry img-2 v-height mb30 gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                            <span className="post-category text-white bg-success">Finance</span>
+                            <div className="text text-sm">
+                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                                <span>February 12, 2019</span>
+                            </div>
                         </a>
                         
                         <div className="two-col d-block d-md-flex">
-                        <a href="single.html" className="hentry v-height img-2 gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
-                            <span className="post-category text-white bg-primary">Sports</span>
-                            <div className="text text-sm">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                            </div>
-                        </a>
-                        <a href="single.html" className="hentry v-height img-2 ml-auto gradient" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
-                            <span className="post-category text-white bg-warning">Industrial</span>
-                            <div className="text text-sm">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                            </div>
-                        </a>
+                            <a href="single.html" className="hentry v-height img-2 gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                                <span className="post-category text-white bg-primary">Sports</span>
+                                <div className="text text-sm">
+                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                                <span>February 12, 2019</span>
+                                </div>
+                            </a>
+                            <a href="single.html" className="hentry v-height img-2 ml-auto gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
+                                <span className="post-category text-white bg-warning">Industrial</span>
+                                <div className="text text-sm">
+                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                                <span>February 12, 2019</span>
+                                </div>
+                            </a>
                         </div>  
                         
                     </div>
@@ -165,6 +167,7 @@ const Main = () =>{
     }
     return(
         <div>
+            <Nav/>
             {renderTop()}
             {renderFeed()}
             {renderPagination()}

@@ -1,0 +1,21 @@
+.nav-link-color-black{
+    color: #363636;
+}
+button{
+    border : none;
+}
+button:focus{
+    outline:0 !important;
+}
+.form-control:focus{
+    outline:0 !important;
+}
+.form-control:active{
+    outline:0 !important;
+}
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+outline: none !important;
+}
