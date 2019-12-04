@@ -18,13 +18,13 @@ class FirebaseProviderImpl implements FirebaseProvider {
             messagingSenderId: "348540060639",
             appId: "1:348540060639:web:b54d5057503bbb02edfa6a",
             measurementId: "G-6BTMFE7LBG"
-          }
+        }
 
-          // Initialize Firebase
-          firebase.initializeApp(firebaseConfig)
-          firebase.analytics()
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig)
+        firebase.analytics()
           
-          this.firebase = firebase.app()
+        this.firebase = firebase.app()
     }
 }
 
