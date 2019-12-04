@@ -1,11 +1,20 @@
 import React from 'react';
 import Nav from './common/Nav';
+import Subscribe from '../component/common/Subscribe';
 import '../style/Main.css';
 const Main = () =>{
+    
+
+
     const renderTop = () =>{
         return(
         <div className="site-section bg-light">
-            <div className="container">
+            <div className="container"> 
+                <div className="row mb-5">
+                                <div className="col-12">
+                                    <h2>Hot</h2>
+                                </div>
+                </div>
                 <div className="row align-items-stretch retro-layout-2">
                     <div className="col-md-4">
                         <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
@@ -65,7 +74,7 @@ const Main = () =>{
                     <div className="container">
                         <div className="row mb-5">
                             <div className="col-12">
-                                <h2>Recent Posts</h2>
+                                <h2>Feed</h2>
                             </div>
                         </div>
 
@@ -172,6 +181,7 @@ const Main = () =>{
             {renderFeed()}
             {renderPagination()}
             {renderHotOfCategory()}
+            <Subscribe/>
         </div>
     );
 }
