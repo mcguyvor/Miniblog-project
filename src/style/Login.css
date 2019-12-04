@@ -5,3 +5,10 @@
     display: flex;
     align-items: center;
   }
+
+  .link{
+      
+  }
+  .link:hover {
+    color: #00F
+ }

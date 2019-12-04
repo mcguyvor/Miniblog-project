@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import {Link} from 'react-router-dom';
 const Register = () =>{
 
     const initialInput = {email:''}
@@ -65,7 +66,7 @@ const Register = () =>{
 
                             
                             <button type="submit" onClick={handleOnSubmit} className="btn btn-outline-primary mr-2">Sign In</button>
-                            <button type="submit" className="btn btn-outline-danger"><Link to ='/'>Cancel</Link></button>
+                            <Link to ='/' activeStyle={{color:'white'}}><button type="submit" className="btn btn-outline-danger">Cancel</button></Link>
 
 
                         </form>

@@ -61,7 +61,7 @@ const LogInPage = () =>{
                             </div>
                             
                             <button type="submit" className="btn btn-outline-success mr-2" onClick={handleOnSubmit}>Login</button>
-                            <button type="submit" className="btn btn-outline-primary"><Link to='register'>Sign In</Link></button>
+                            <Link to='/register' activeStyle={{ color: 'white' }}><button type="submit" className="btn btn-outline-primary">Sign In</button></Link>
                         </form>
                     </div>
                 
