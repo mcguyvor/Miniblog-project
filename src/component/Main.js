@@ -3,7 +3,7 @@ import Nav from './common/Nav';
 import Subscribe from '../component/common/Subscribe';
 import '../style/Main.css';
 const Main = () =>{
-    
+
 
 
     const renderTop = () =>{
@@ -15,12 +15,16 @@ const Main = () =>{
                                     <h2>Hot</h2>
                                 </div>
                 </div>
+
+                {
+                    //for part left
+                }
                 <div className="row align-items-stretch retro-layout-2">
                     <div className="col-md-4">
                         <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
                         
                         <div className="text">
-                            <h2>The AI magically removes moving objects from videos.</h2>
+                            <h2>The AI magically removes moving objects from videos. helo testnheroku</h2>
                             <span className="date">July 19, 2019</span>
                         </div>
                         </a>
@@ -32,6 +36,9 @@ const Main = () =>{
                         </div>
                         </a>
                     </div>
+                    {
+                        // for middle part of hot
+                    }
                     <div className="col-md-4">
                         <a href="single.html" className="h-entry img-5 h-100 gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
                         
@@ -45,6 +52,7 @@ const Main = () =>{
                         </div>
                         </a>
                     </div>
+
                     <div className="col-md-4">
                         <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{backgroundImage: `url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}`}}>
                         
