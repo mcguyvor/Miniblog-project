@@ -1,17 +1,22 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
+import UserSessionService from '../service/UserSessionService';
 const Register = () =>{
 
-    const initialInput = {email:''}
+    const initialInput = {email:'',password:'',displayName:''}
 
     const [input,setInput] = useState(initialInput);
 
-    const initialValidate= {emailError :'', passwordError:''};
+    const initialValidate= {emailError :'', passwordError:'',displayNameError:''};
 
     const [errorMessage,setError] =useState(initialValidate);
 
+    const service = UserSessionService;
+
     const validateForm = () =>{
         let emailError ='';
+        let displayNameError ='';
+        let passwordError ='';
         const email =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if(!input.email){
             emailError ='Please enter your email address';
@@ -19,8 +24,14 @@ const Register = () =>{
         if(!input.email.match(email)){
             emailError = 'Please enter the correct email format'; 
         }
-        if(emailError){
-            setError({emailError:emailError});
+        if(!input.displayName){
+            displayNameError = 'Please enter the display'; 
+        }
+        if(!input.password){
+            passwordError = 'Please enter password'; 
+        }
+        if(emailError||displayNameError||passwordError){
+            setError({emailError:emailError,passwordError:passwordError,displayNameError:displayNameError});
             return false;
         }else{
             return true;
@@ -31,6 +42,11 @@ const Register = () =>{
         const isValid = validateForm();
         if(isValid){
             // post method to end point
+            try{
+                service.register(input.email,input.displayName,input.password)
+            }catch(error){
+                alert(error.message);
+            }
             console.log(input);
             setError(initialValidate);
             e.target.reset();       
@@ -56,12 +72,16 @@ const Register = () =>{
 
                             <div className="form-group">
                                 <label for="InputPassword"><strong>Display Name</strong></label>
-                                <input type="password" onChange = {handleChange} className="form-control" id="InputPassword" name='password' placeholder='Display name'/>
+                                <input type="password" onChange = {handleChange} className="form-control" id="InputPassword" name='displayName' placeholder='Display name' required="required"/>
+                                {errorMessage.displayNameError ?<small id="emailHelp" className="form-text text-danger">{errorMessage.displayNameError}</small> : null}
+
                             </div>
                             
                             <div className="form-group">
                                 <label for="InputPassword"><strong>Password</strong></label>
-                                <input type="password" onChange = {handleChange} className="form-control" id="InputPassword" name='password' placeholder='Password'/>
+                                <input type="password" onChange = {handleChange} className="form-control" id="InputPassword" name='password' placeholder='Password' required="required"/>
+                                {errorMessage.passwordError ?<small id="emailHelp" className="form-text text-danger">{errorMessage.passwordError}</small> : null}
+
                             </div>
 
                             
