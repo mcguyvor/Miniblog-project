@@ -13,7 +13,7 @@ const Main = () =>{
    
     
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         const getUser = async () =>{
             try{
            const profile = await service.getProfile();
@@ -30,7 +30,7 @@ const Main = () =>{
             }
         }
         getUser();
-   },[])
+   },[]) */
 
     const renderTop = () =>{
         return(
@@ -210,7 +210,7 @@ const Main = () =>{
     }
     return(
         <div>
-            <Nav isLogIn={isLogIn} userProfile={userProfile}/>
+            <Nav />
             {renderTop()}
             {renderFeed()}
             {renderPagination()}

@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import {useSelector,useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Fade} from 'reactstrap';
 import '../../style/Nav.css';
@@ -8,10 +9,17 @@ import UserLogInIcon from '../../media/man-user.png';
 import UserLogOutIcon from '../../media/logout.png';
 import AddBlogIcon from '../../media/add.png';
 import Popover from 'react-tiny-popover';
+import {userInfo} from '../../action/index';
+import UserSessionService from '../../service/UserSessionService';
 
 const Nav = (props) => {
 
-    const logIn = props.isLogIn;
+    //const logIn = props.isLogIn;
+
+    const logIn = useSelector(state=>state.isLogIn)
+
+    const user = useSelector(state=>state.userInfo)
+
 
     const [openSearch,setOpenSearch] = useState(false);
 
@@ -19,11 +27,31 @@ const Nav = (props) => {
 
     const [isPopOverOpen,setIsPopOverOpen] = useState(false);
 
-    useEffect(()=>{
+
+    const service = new UserSessionService();
+
+    const dispatch = useDispatch();
+
+    /*useEffect(()=>{
         setIsLogIn(props.isLogIn)
-    },[props.isLogIn])
+    },[props.isLogIn])*/
+
+    useEffect(()=>{
+        const getUserInfo =async()=>{
+            try{
+                const profile = await service.getProfile();
+                dispatch(userInfo(profile));
+            }catch(error){
+                console.log(error.message)
+            }
+        }
+     getUserInfo(); 
+    }
+    
+    ,[])
 
     const renderIsLogInIcon = () =>{
+        if(user){
         return(
             <Popover
                 isOpen={isPopOverOpen} // check the login state
@@ -32,7 +60,7 @@ const Nav = (props) => {
 
                         <ul className="list-group list-group-flush">
                             
-                            <li className='list-group-item list-group-item-action'><Link style={{color:'black'}}>{props.userProfile.user.displayName}</Link></li>
+                            <li className='list-group-item list-group-item-action'><Link style={{color:'black'}}>{user.user.displayName}</Link></li>
                             <li className='list-group-item list-group-item-action'><Link to= '/createblog' style={{color:'black'}}><img src={AddBlogIcon} className='mr-2' style={{width:'1rem'}}/>Add blog</Link></li>
                             <li className='list-group-item list-group-item-action'><Link onClick={()=> setIsLogIn(false)} style={{color:'black'}}><img src={UserLogOutIcon} className='mr-2' style={{width:'1rem'}}/>Log Out</Link></li>
 
@@ -49,6 +77,7 @@ const Nav = (props) => {
             </Popover>
             )
     }
+}
     
     const renderNavBar = () =>{
         

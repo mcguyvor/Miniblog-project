@@ -1,8 +1,17 @@
-export const isLogIn = value =>{
+export const isLogIn = () =>{
     return(
         {
             type:'IS_LOGIN',
-            value
+            payload : true
+        }
+    )
+}
+
+export const userInfo = value =>{
+    return(
+        {
+            type:'USER_INFO',
+            payload : value
         }
     )
 }

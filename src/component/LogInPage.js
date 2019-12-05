@@ -1,8 +1,13 @@
 import React,{useState} from 'react';
+import {useSelector,useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import '../style/Login.css';
 import Nav from './common/Nav';
 import UserSessionService from '../service/UserSessionService';
+import {isLogIn} from '../action/index';
+import {Spinner} from 'reactstrap'; 
+
+
 const LogInPage = (props) =>{
 
     const initialInput = {email:'',password:''}
@@ -13,7 +18,12 @@ const LogInPage = (props) =>{
 
     const [errorMessage,setError] =useState(initialValidate);
 
+    const [loading,setLoading] = useState(false);
+
     const service = new UserSessionService();
+
+    const dispatch = useDispatch();
+
 
     const validateForm = () =>{
         let emailError ='';
@@ -35,13 +45,23 @@ const LogInPage = (props) =>{
     const handleOnSubmit = async (e) =>{
         e.preventDefault();
         const isValid = validateForm();
+
+        setLoading(true); //for render the loading
+
         if(isValid){
             // post method to end point
             try{
             await service.login(input.email,input.password)
             console.log(input);
+
+            dispatch(isLogIn()); // set the islogIn to be true on redux store
+            
             setError(initialValidate);
+
+            setLoading(false);
+
             props.history.push('/');      
+
             }catch(error){
                 alert(error.message)
                 console.log(error.message)
@@ -78,10 +98,24 @@ const LogInPage = (props) =>{
                 
         );
     }
+
+    const renderLoading = () =>{
+        return(
+                    <div className='loading'>
+                        <Spinner type="grow" color="primary" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="secondary" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="success" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="danger" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="warning" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="info" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="dark" style={{ width: '3rem', height: '3rem' }} />
+                    </div>
+        )
+    }
     return(
         <div>
             <Nav/>
-            {renderLoginForm()}
+            {loading? renderLoading():renderLoginForm()}
         </div>
     );
 }
