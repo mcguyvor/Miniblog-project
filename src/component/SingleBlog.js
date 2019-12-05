@@ -40,6 +40,7 @@ const SingleBlog = () =>{
         <div>
             <Nav/>
             {renderCoverImg()}
+            
         </div>
     );
 }

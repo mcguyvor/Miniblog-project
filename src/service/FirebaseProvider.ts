@@ -1,12 +1,12 @@
 import firebase from "firebase"
 
 export interface FirebaseProvider {
-    firebase: firebase.app.App
+    app: firebase.app.App
 }
 
 class FirebaseProviderImpl implements FirebaseProvider {
 
-    firebase!: firebase.app.App
+    app!: firebase.app.App
 
     constructor() {
         const firebaseConfig = {
@@ -24,10 +24,10 @@ class FirebaseProviderImpl implements FirebaseProvider {
         firebase.initializeApp(firebaseConfig)
         firebase.analytics()
           
-        this.firebase = firebase.app()
+        this.app = firebase.app()
     }
 }
 
-const firebaseProvider = new FirebaseProviderImpl()
+const firebaseProvider: FirebaseProvider = new FirebaseProviderImpl()
 
 export default firebaseProvider
