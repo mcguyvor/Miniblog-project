@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../style/Login.css';
+import Nav from './common/Nav';
 import UserSessionService from '../service/UserSessionService';
 const LogInPage = (props) =>{
 
@@ -79,6 +80,7 @@ const LogInPage = (props) =>{
     }
     return(
         <div>
+            <Nav/>
             {renderLoginForm()}
         </div>
     );

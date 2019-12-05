@@ -11,6 +11,8 @@ const Main = () =>{
 
     const [userProfile,setUserProfile] = useState();
    
+    
+
     useEffect(()=>{
         const getUser = async () =>{
             try{
