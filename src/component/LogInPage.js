@@ -1,15 +1,18 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../style/Login.css';
-const LogInPage = () =>{
+import UserSessionService from '../service/UserSessionService';
+const LogInPage = (props) =>{
 
-    const initialInput = {email:''}
+    const initialInput = {email:'',password:''}
 
     const [input,setInput] = useState(initialInput);
 
     const initialValidate= {emailError :'', passwordError:''};
 
     const [errorMessage,setError] =useState(initialValidate);
+
+    const service = new UserSessionService();
 
     const validateForm = () =>{
         let emailError ='';
@@ -27,14 +30,21 @@ const LogInPage = () =>{
             return true;
         }
     }
-    const handleOnSubmit = (e) =>{
+
+    const handleOnSubmit = async (e) =>{
         e.preventDefault();
         const isValid = validateForm();
         if(isValid){
             // post method to end point
+            try{
+            await service.login(input.email,input.password)
             console.log(input);
             setError(initialValidate);
-            e.target.reset();       
+            props.history.push('/');      
+            }catch(error){
+                alert(error.message)
+                console.log(error.message)
+            } 
         }
     }
 

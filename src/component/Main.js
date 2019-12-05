@@ -1,10 +1,34 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Nav from './common/Nav';
 import Subscribe from '../component/common/Subscribe';
 import '../style/Main.css';
+import UserSessionService from '../service/UserSessionService';
 const Main = () =>{
 
+    const service = new UserSessionService();
+
+    const [isLogIn,setIsLogin] = useState(false);
+
+    const [userProfile,setUserProfile] = useState();
    
+    useEffect(()=>{
+        const getUser = async () =>{
+            try{
+           const profile = await service.getProfile();
+           
+           console.log('user profile',profile);
+           
+            setUserProfile(profile);
+                
+                if(profile){
+                    setIsLogin(!isLogIn); // setstate of isLogin inorder to pass it to nav component
+                }
+            }catch(error){
+                console.log(error.message);
+            }
+        }
+        getUser();
+   },[])
 
     const renderTop = () =>{
         return(
@@ -184,7 +208,7 @@ const Main = () =>{
     }
     return(
         <div>
-            <Nav/>
+            <Nav isLogIn={isLogIn} userProfile={userProfile}/>
             {renderTop()}
             {renderFeed()}
             {renderPagination()}

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Fade} from 'reactstrap';
 import '../../style/Nav.css';
@@ -9,12 +9,19 @@ import UserLogOutIcon from '../../media/logout.png';
 import AddBlogIcon from '../../media/add.png';
 import Popover from 'react-tiny-popover';
 
-const Nav = () => {
+const Nav = (props) => {
+
+    const logIn = props.isLogIn;
+
     const [openSearch,setOpenSearch] = useState(false);
 
-    const [isLogIn,setIsLogIn] = useState(false);
+    const [isLogIn,setIsLogIn] = useState(logIn);
 
     const [isPopOverOpen,setIsPopOverOpen] = useState(false);
+
+    useEffect(()=>{
+        setIsLogIn(props.isLogIn)
+    },[props.isLogIn])
 
     const renderIsLogInIcon = () =>{
         return(
@@ -25,7 +32,7 @@ const Nav = () => {
 
                         <ul className="list-group list-group-flush">
                             
-                            <li className='list-group-item list-group-item-action'><Link style={{color:'black'}}>User display</Link></li>
+                            <li className='list-group-item list-group-item-action'><Link style={{color:'black'}}>{props.userProfile.user.displayName}</Link></li>
                             <li className='list-group-item list-group-item-action'><Link to= '/createblog' style={{color:'black'}}><img src={AddBlogIcon} className='mr-2' style={{width:'1rem'}}/>Add blog</Link></li>
                             <li className='list-group-item list-group-item-action'><Link onClick={()=> setIsLogIn(false)} style={{color:'black'}}><img src={UserLogOutIcon} className='mr-2' style={{width:'1rem'}}/>Log Out</Link></li>
 
