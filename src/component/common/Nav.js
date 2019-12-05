@@ -4,9 +4,44 @@ import {Fade} from 'reactstrap';
 import '../../style/Nav.css';
 import Search from '../../media/search.png';
 import LoginIcon from '../../media/user.png';
+import UserLogInIcon from '../../media/man-user.png';
+import UserLogOutIcon from '../../media/logout.png';
+import AddBlogIcon from '../../media/add.png';
+import Popover from 'react-tiny-popover';
 
 const Nav = () => {
     const [openSearch,setOpenSearch] = useState(false);
+
+    const [isLogIn,setIsLogIn] = useState(false);
+
+    const [isPopOverOpen,setIsPopOverOpen] = useState(false);
+
+    const renderIsLogInIcon = () =>{
+        return(
+            <Popover
+                isOpen={isPopOverOpen} // check the login state
+                position={'bottom'} // preferred position
+                content={(
+
+                        <ul className="list-group list-group-flush">
+                            
+                            <li className='list-group-item list-group-item-action'><Link style={{color:'black'}}>User display</Link></li>
+                            <li className='list-group-item list-group-item-action'><Link to= '/createblog' style={{color:'black'}}><img src={AddBlogIcon} className='mr-2' style={{width:'1rem'}}/>Add blog</Link></li>
+                            <li className='list-group-item list-group-item-action'><Link onClick={()=> setIsLogIn(false)} style={{color:'black'}}><img src={UserLogOutIcon} className='mr-2' style={{width:'1rem'}}/>Log Out</Link></li>
+
+                        </ul>
+                        
+                )}
+            >
+                {// the user already log in icon 
+                }
+                <Link className='nav-link nav-link-color-black mr-2' onClick={()=> setIsPopOverOpen(!isPopOverOpen)}>
+                    <img src = {UserLogInIcon} style={{width:'1.5rem'}}/>
+                </Link>
+                
+            </Popover>
+            )
+    }
     
     const renderNavBar = () =>{
         
@@ -26,7 +61,9 @@ const Nav = () => {
                             <li className='nav-item'><Link to='/'  className='nav-link nav-link-color-black mr-2'><strong>Industrial</strong></Link></li>
                             <li className='nav-item'><Link to='/'  className='nav-link nav-link-color-black mr-2'><strong>Sport</strong></Link></li>
                             <li className='nav-item'><Link className='nav-link nav-link-color-black mr-2' onClick={()=> setOpenSearch(true)}><img src={Search} style={{width:'1rem'}}/></Link></li>
-                            <li className='nav-item'><Link to = '/login' className='nav-link nav-link-color-black mr-2'><img src={LoginIcon} style={{width:'1.5rem'}}/></Link></li>
+                            
+                            <li className='nav-item'>{isLogIn? renderIsLogInIcon() : <Link to = '/login' className='nav-link nav-link-color-black mr-2'><img src={LoginIcon} style={{width:'1.5rem'}}/></Link>}</li>
+                        
                         </ul>
                     </div>
                 </nav>
