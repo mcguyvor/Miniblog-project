@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
 import UserSessionService from '../service/UserSessionService';
-const Register = () =>{
+const Register = (props) =>{
 
     const initialInput = {email:'',password:'',displayName:''}
 
@@ -11,7 +11,9 @@ const Register = () =>{
 
     const [errorMessage,setError] =useState(initialValidate);
 
-    const service = UserSessionService;
+    const service = new UserSessionService();
+
+    const [done,setDone] = useState(false);
 
     const validateForm = () =>{
         let emailError ='';
@@ -37,26 +39,28 @@ const Register = () =>{
             return true;
         }
     }
-    const handleOnSubmit = (e) =>{
+    const handleOnSubmit = async (e) =>{
         e.preventDefault();
         const isValid = validateForm();
         if(isValid){
             // post method to end point
             try{
-                service.register(input.email,input.displayName,input.password)
+               await service.register(input.email,input.displayName,input.password)
+              
+                props.history.push('/');
             }catch(error){
                 alert(error.message);
             }
             console.log(input);
             setError(initialValidate);
-            e.target.reset();       
+           // e.target.reset();       
         }
+        
     }
 
     const handleChange  = (e) =>{
         setInput({...input,[e.target.name]:e.target.value});
     }
-
 
     const renderRegisterForm = () =>{
         return(

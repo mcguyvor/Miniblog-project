@@ -47,7 +47,7 @@ const LogInPage = () =>{
         return(
             
                     <div className='container vertical-center'>
-                        <form className='w-100'>
+                        <form className='w-100 p-3 login-shadow'>
                             
                             <div className="form-group">
                                 <label for="InputEmail"><strong>Email address</strong></label>
