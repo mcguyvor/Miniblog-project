@@ -31,4 +31,8 @@ export default class UserSessionService {
             throw Error("User is somehow null")
         }
     }
+
+    async getProfile(): Promise<User> {
+        return await this.accountAPI.getProfile()
+    }
 }
