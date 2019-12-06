@@ -92,7 +92,7 @@ const LogInPage = (props) =>{
                             </div>
                             
                             <button type="submit" className="btn btn-outline-success mr-2" onClick={handleOnSubmit}>Login</button>
-                            <Link to='/register' activeStyle={{ color: 'white' }}><button type="submit" className="btn btn-outline-primary">Sign In</button></Link>
+                            <Link to='/register' activeStyle={{ color: 'white' }}><button type="submit" className="btn btn-outline-primary">Sign Up</button></Link>
                         </form>
                     </div>
                 

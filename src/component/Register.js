@@ -76,7 +76,7 @@ const Register = (props) =>{
 
                             <div className="form-group">
                                 <label for="InputPassword"><strong>Display Name</strong></label>
-                                <input type="password" onChange = {handleChange} className="form-control" id="InputPassword" name='displayName' placeholder='Display name' required="required"/>
+                                <input type="text" onChange = {handleChange} className="form-control" id="InputPassword" name='displayName' placeholder='Display name' required="required"/>
                                 {errorMessage.displayNameError ?<small id="emailHelp" className="form-text text-danger">{errorMessage.displayNameError}</small> : null}
 
                             </div>
@@ -89,7 +89,7 @@ const Register = (props) =>{
                             </div>
 
                             
-                            <button type="submit" onClick={handleOnSubmit} className="btn btn-outline-primary mr-2">Sign In</button>
+                            <button type="submit" onClick={handleOnSubmit} className="btn btn-outline-primary mr-2">Sign Up</button>
                             <Link to ='/' activeStyle={{color:'white'}}><button type="submit" className="btn btn-outline-danger">Cancel</button></Link>
 
 
