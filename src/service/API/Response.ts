@@ -1,21 +1,21 @@
 export enum ResponseStatus {
-    ERROR = "error",
-    OK = "ok"
+    ERROR = 'error',
+    OK = 'ok'
 }
 
 export interface HTTPResponse {
-    status: ResponseStatus
-    body: any
+    status: ResponseStatus;
+    body: any;
 }
 
 export interface ErrorResponse extends HTTPResponse {
-    status: ResponseStatus.ERROR
+    status: ResponseStatus.ERROR;
     body: {
-        message: string
-    }
+        message: string;
+    };
 }
 
 export interface Response<T = any> extends HTTPResponse {
-	status: ResponseStatus.OK
-    body: T
+    status: ResponseStatus.OK;
+    body: T;
 }
