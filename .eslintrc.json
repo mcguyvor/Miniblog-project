@@ -28,11 +28,34 @@
         "@typescript-eslint/no-explicit-any": "off",
         "no-unused-expressions": "error",
         "no-unused-labels": "error",
-        "indent": ["error", 4],
-        "space-before-function-paren": ["error", {
-            "anonymous": "always",
-            "named": "never",
-            "asyncArrow": "always"
-        }]
-    }
+        "indent": [
+            "error",
+            4
+        ],
+        "space-before-function-paren": [
+            "error",
+            {
+                "anonymous": "always",
+                "named": "never",
+                "asyncArrow": "always"
+            }
+        ],
+        "@typescript-eslint/explicit-function-return-type": "off"
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
+            "rules": {
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error"
+                ]
+            }
+        }
+    ],
+    "ignorePatterns": [
+        "*.min.js"
+    ]
 }
