@@ -3,14 +3,28 @@ import Nav from './common/Nav';
 import Subscribe from '../component/common/Subscribe';
 import '../style/Main.css';
 import UserSessionService from '../service/UserSessionService';
+import {useDispatch,useSelector} from 'react-redux';
+import {isLogIn} from '../action/index';
 const Main = () =>{
 
     const service = new UserSessionService();
 
-    const [isLogIn,setIsLogin] = useState(false);
+    //const [isLogIn,setIsLogin] = useState(false);
 
-    const [userProfile,setUserProfile] = useState();
-   
+    //const [userProfile,setUserProfile] = useState();
+    
+    const dispath = useDispatch();
+    
+    
+    useEffect(()=>{
+        const checkLogIn= async() => {
+
+                    await service.authStateEvent.on;
+                    if(checkLogIn){
+                        dispath(isLogIn);                        
+                }   
+        }
+    },[])
     
 
     /*useEffect(()=>{
