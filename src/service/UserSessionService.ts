@@ -42,6 +42,10 @@ export default class UserSessionService {
         return this.accountAPI.getProfile()
     }
 
+    isLoggedIn(): boolean {
+        return this.authProvider.currentUser !== null || this.authProvider.currentUser !== undefined
+    }
+
     private observeAuthStateChange(): void {
         authProvider.onAuthStateChanged((user) => {
             if (user) {
