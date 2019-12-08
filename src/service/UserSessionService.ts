@@ -1,7 +1,6 @@
 import AccountAPI from './API/AccountAPI';
 import User from '../model/User';
 import authProvider from './FirebaseAuthProvider';
-import { auth } from 'firebase';
 
 export default class UserSessionService {
 
@@ -9,7 +8,7 @@ export default class UserSessionService {
     private accountAPI = new AccountAPI()
 
     async register(email: string, displayName: string, password: string): Promise<User> {
-        const userCredential = await this.authProvider.auth.createUserWithEmailAndPassword(email, password)
+        const userCredential = await this.authProvider.createUserWithEmailAndPassword(email, password)
         if (userCredential.user) {
             const user = await this.accountAPI.register({
                 email,
@@ -23,7 +22,7 @@ export default class UserSessionService {
     }
 
     async login(email: string, password: string): Promise<User> {
-        const userCredential = await this.authProvider.auth.signInWithEmailAndPassword(email, password)
+        const userCredential = await this.authProvider.signInWithEmailAndPassword(email, password)
         if (userCredential.user) {
             const user = await this.accountAPI.getProfile()
             return user

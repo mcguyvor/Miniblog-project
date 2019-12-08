@@ -26,7 +26,7 @@ export default abstract class BaseAPI {
     }
 
     protected async setAuthToken() {
-        const currentUser = authProvider.auth.currentUser
+        const currentUser = authProvider.currentUser
         if (isNullOrUndefined(currentUser)) {
             throw new NoCurrentUserError()
         }
