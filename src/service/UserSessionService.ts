@@ -6,7 +6,7 @@ export default class UserSessionService {
 
     private authProvider = authProvider
     private accountAPI = new AccountAPI()
-
+    
     async register(email: string, displayName: string, password: string): Promise<User> {
         const userCredential = await this.authProvider.createUserWithEmailAndPassword(email, password)
         if (userCredential.user) {
@@ -34,4 +34,8 @@ export default class UserSessionService {
     async getProfile(): Promise<User> {
         return await this.accountAPI.getProfile()
     }
+
+   
+        
+    
 }

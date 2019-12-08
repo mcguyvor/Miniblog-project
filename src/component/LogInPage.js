@@ -1,15 +1,29 @@
 import React,{useState} from 'react';
+import {useSelector,useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import '../style/Login.css';
-const LogInPage = () =>{
+import Nav from './common/Nav';
+import UserSessionService from '../service/UserSessionService';
+import {isLogIn} from '../action/index';
+import {Spinner} from 'reactstrap'; 
 
-    const initialInput = {email:''}
+
+const LogInPage = (props) =>{
+
+    const initialInput = {email:'',password:''}
 
     const [input,setInput] = useState(initialInput);
 
     const initialValidate= {emailError :'', passwordError:''};
 
     const [errorMessage,setError] =useState(initialValidate);
+
+    const [loading,setLoading] = useState(false);
+
+    const service = new UserSessionService();
+
+    const dispatch = useDispatch();
+
 
     const validateForm = () =>{
         let emailError ='';
@@ -27,14 +41,31 @@ const LogInPage = () =>{
             return true;
         }
     }
-    const handleOnSubmit = (e) =>{
+
+    const handleOnSubmit = async (e) =>{
         e.preventDefault();
         const isValid = validateForm();
+
+        setLoading(true); //for render the loading
+
         if(isValid){
             // post method to end point
+            try{
+            await service.login(input.email,input.password)
             console.log(input);
+
+            dispatch(isLogIn()); // set the islogIn to be true on redux store
+            
             setError(initialValidate);
-            e.target.reset();       
+
+            setLoading(false);
+
+            props.history.push('/');      
+
+            }catch(error){
+                alert(error.message)
+                console.log(error.message)
+            } 
         }
     }
 
@@ -61,15 +92,30 @@ const LogInPage = () =>{
                             </div>
                             
                             <button type="submit" className="btn btn-outline-success mr-2" onClick={handleOnSubmit}>Login</button>
-                            <Link to='/register' activeStyle={{ color: 'white' }}><button type="submit" className="btn btn-outline-primary">Sign In</button></Link>
+                            <Link to='/register' activeStyle={{ color: 'white' }}><button type="submit" className="btn btn-outline-primary">Sign Up</button></Link>
                         </form>
                     </div>
                 
         );
     }
+
+    const renderLoading = () =>{
+        return(
+                    <div className='loading'>
+                        <Spinner type="grow" color="primary" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="secondary" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="success" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="danger" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="warning" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="info" style={{ width: '3rem', height: '3rem' }} />
+                        <Spinner type="grow" color="dark" style={{ width: '3rem', height: '3rem' }} />
+                    </div>
+        )
+    }
     return(
         <div>
-            {renderLoginForm()}
+            <Nav/>
+            {loading? renderLoading():renderLoginForm()}
         </div>
     );
 }
