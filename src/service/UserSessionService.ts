@@ -1,10 +1,18 @@
 import AccountAPI from './API/AccountAPI'
 import User from '../model/User'
 import authProvider from './FirebaseAuthProvider'
+import AuthStateEvent from './AuthStateEvent'
+import { EventEmitter } from 'events'
 
 export default class UserSessionService {
     private authProvider = authProvider
     private accountAPI = new AccountAPI()
+
+    authStateEvent: AuthStateEvent = new EventEmitter()
+
+    constructor() {
+        this.observeAuthStateChange()
+    }
 
     async register(email: string, displayName: string, password: string): Promise<User> {
         const userCredential = await this.authProvider.createUserWithEmailAndPassword(email, password)
@@ -32,5 +40,24 @@ export default class UserSessionService {
 
     async getProfile(): Promise<User> {
         return this.accountAPI.getProfile()
+    }
+
+    private observeAuthStateChange(): void {
+        authProvider.onAuthStateChanged((user) => {
+            if (user) {
+                // User logged in
+                this.getProfile().then((fetchedUser) => {
+                    this.authStateEvent.emit('login', fetchedUser)
+                }).catch((error) => {
+                    this.authStateEvent.emit('error', error)
+                })
+            } else {
+                // User logged out
+                this.authStateEvent.emit('logout')
+            }
+        }, (firebaseError) => {
+            console.log('Firebase auth error', firebaseError.code, firebaseError.message)
+            this.authStateEvent.emit('error', Error(firebaseError.message + ' ' + firebaseError.code))
+        })
     }
 }

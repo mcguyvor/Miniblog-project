@@ -6,6 +6,12 @@ export interface FirebaseAuthProvider {
 
     createUserWithEmailAndPassword(email: string, password: string): Promise<firebase.auth.UserCredential>;
     signInWithEmailAndPassword(email: string, password: string): Promise<firebase.auth.UserCredential>;
+
+    onAuthStateChanged(
+        next: ((a: firebase.User | null) => any),
+        error?: (a: firebase.auth.Error) => any,
+        completed?: firebase.Unsubscribe
+    ): firebase.Unsubscribe;
 }
 
 class FirebaseAuthProviderImpl implements FirebaseAuthProvider {
@@ -33,6 +39,14 @@ class FirebaseAuthProviderImpl implements FirebaseAuthProvider {
     async signInWithEmailAndPassword(email: string, password: string): Promise<firebase.auth.UserCredential> {
         await this.ensurePersistenceState()
         return this.auth.signInWithEmailAndPassword(email, password)
+    }
+
+    onAuthStateChanged(
+        next: ((a: firebase.User | null) => any),
+        error?: (a: firebase.auth.Error) => any,
+        completed?: firebase.Unsubscribe
+    ): firebase.Unsubscribe {
+        return this.auth.onAuthStateChanged(next, error, completed)
     }
 }
 
