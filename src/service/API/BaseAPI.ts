@@ -20,40 +20,40 @@ export default abstract class BaseAPI {
     private authProvider = authProvider
 
     protected isOkResponse (response: HTTPResponse): response is Response {
-      return response.status === ResponseStatus.OK
+        return response.status === ResponseStatus.OK
     }
 
     protected async setAuthToken (): Promise<void> {
-      const currentUser = authProvider.currentUser
-      if (currentUser === null || currentUser === undefined) {
-        throw new NoCurrentUserError()
-      }
-      try {
-        const token = await currentUser.getIdToken()
-        this.headers.authorization = `Bearer ${token}`
-      } catch (error) {
-        console.log(error)
-        throw new AccessTokenExpire()
-      }
+        const currentUser = authProvider.currentUser
+        if (currentUser === null || currentUser === undefined) {
+            throw new NoCurrentUserError()
+        }
+        try {
+            const token = await currentUser.getIdToken()
+            this.headers.authorization = `Bearer ${token}`
+        } catch (error) {
+            console.log(error)
+            throw new AccessTokenExpire()
+        }
     }
 
     protected async get<T = any> (path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
-      const response = await Axios.get(this.BASE_URL + path, { params, headers: this.headers })
-      return response.data
+        const response = await Axios.get(this.BASE_URL + path, { params, headers: this.headers })
+        return response.data
     }
 
     protected async post<T = any> (path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
-      const response = await Axios.post(this.BASE_URL + path, params, { headers: this.headers })
-      return response.data
+        const response = await Axios.post(this.BASE_URL + path, params, { headers: this.headers })
+        return response.data
     }
 
     protected async put<T = any> (path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
-      const response = await Axios.put(this.BASE_URL + path, params, { headers: this.headers })
-      return response.data
+        const response = await Axios.put(this.BASE_URL + path, params, { headers: this.headers })
+        return response.data
     }
 
     protected async delete<T = any> (path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
-      const response = await Axios.delete(this.BASE_URL + path, { params, headers: this.headers })
-      return response.data
+        const response = await Axios.delete(this.BASE_URL + path, { params, headers: this.headers })
+        return response.data
     }
 }

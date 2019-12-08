@@ -27,6 +27,7 @@
     "rules": {
         "@typescript-eslint/no-explicit-any": "off",
         "no-unused-expressions": "error",
-        "no-unused-labels": "error"
+        "no-unused-labels": "error",
+        "indent": ["error", 4]
     }
 }
