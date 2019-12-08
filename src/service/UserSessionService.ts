@@ -6,7 +6,7 @@ export default class UserSessionService {
     private authProvider = authProvider
     private accountAPI = new AccountAPI()
 
-    async register (email: string, displayName: string, password: string): Promise<User> {
+    async register(email: string, displayName: string, password: string): Promise<User> {
         const userCredential = await this.authProvider.createUserWithEmailAndPassword(email, password)
         if (userCredential.user) {
             const user = await this.accountAPI.register({
@@ -20,7 +20,7 @@ export default class UserSessionService {
         }
     }
 
-    async login (email: string, password: string): Promise<User> {
+    async login(email: string, password: string): Promise<User> {
         const userCredential = await this.authProvider.signInWithEmailAndPassword(email, password)
         if (userCredential.user) {
             const user = await this.accountAPI.getProfile()
@@ -30,7 +30,7 @@ export default class UserSessionService {
         }
     }
 
-    async getProfile (): Promise<User> {
+    async getProfile(): Promise<User> {
         return this.accountAPI.getProfile()
     }
 }

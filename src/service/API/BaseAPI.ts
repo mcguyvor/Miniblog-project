@@ -19,11 +19,11 @@ export default abstract class BaseAPI {
     private headers: RequestHeader = {}
     private authProvider = authProvider
 
-    protected isOkResponse (response: HTTPResponse): response is Response {
+    protected isOkResponse(response: HTTPResponse): response is Response {
         return response.status === ResponseStatus.OK
     }
 
-    protected async setAuthToken (): Promise<void> {
+    protected async setAuthToken(): Promise<void> {
         const currentUser = authProvider.currentUser
         if (currentUser === null || currentUser === undefined) {
             throw new NoCurrentUserError()
@@ -37,22 +37,22 @@ export default abstract class BaseAPI {
         }
     }
 
-    protected async get<T = any> (path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
+    protected async get<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
         const response = await Axios.get(this.BASE_URL + path, { params, headers: this.headers })
         return response.data
     }
 
-    protected async post<T = any> (path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
+    protected async post<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
         const response = await Axios.post(this.BASE_URL + path, params, { headers: this.headers })
         return response.data
     }
 
-    protected async put<T = any> (path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
+    protected async put<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
         const response = await Axios.put(this.BASE_URL + path, params, { headers: this.headers })
         return response.data
     }
 
-    protected async delete<T = any> (path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
+    protected async delete<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
         const response = await Axios.delete(this.BASE_URL + path, { params, headers: this.headers })
         return response.data
     }

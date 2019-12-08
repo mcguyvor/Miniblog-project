@@ -7,7 +7,7 @@ export interface FirebaseProvider {
 class FirebaseProviderImpl implements FirebaseProvider {
     app!: firebase.app.App
 
-    constructor () {
+    constructor() {
         const firebaseConfig = {
             apiKey: 'AIzaSyBeVH4br63xkc3oigY_ZeqNXfW6IAoJ2_A',
             authDomain: 'mini-block.firebaseapp.com',
