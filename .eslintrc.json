@@ -34,5 +34,8 @@
             "named": "never",
             "asyncArrow": "always"
         }]
-    }
+    },
+    "ignorePatterns": [
+        "*.min.js"
+    ]
 }
