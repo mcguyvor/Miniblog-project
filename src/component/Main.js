@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React,{useEffect,useState} from 'react';
 import Nav from './common/Nav';
 import Subscribe from '../component/common/Subscribe';
@@ -7,43 +6,44 @@ import UserSessionService from '../service/UserSessionService';
 import {useDispatch,useSelector} from 'react-redux';
 import {isLogIn} from '../action/index';
 const Main = () =>{
-=======
-import React, { useEffect, useState } from 'react'
-import Nav from './common/Nav'
-import Subscribe from '../component/common/Subscribe'
-import '../style/Main.css'
-import UserSessionService from '../service/UserSessionService'
-const Main = () => {
-    const service = new UserSessionService()
->>>>>>> 2db1457788e3d69844e63fd84ca973ad965ceac1
 
-    const [isLogIn, setIsLogin] = useState(false)
 
-<<<<<<< HEAD
     //const [isLogIn,setIsLogin] = useState(false);
 
     //const [userProfile,setUserProfile] = useState();
     
     const dispath = useDispatch();
+
+    const service = new UserSessionService();
     
     
     useEffect(()=>{
-        const checkLogIn= async() => {
+        const checkLogIn = async() => {
+            //check login firebase state
+             await service.authStateEvent.on('login',(user)=>{
+                //alert('LOGGED IN');
+                 dispath(isLogIn());
+                console.log(user)
+            });
 
-                    await service.authStateEvent.on;
-                    if(checkLogIn){
-                        dispath(isLogIn);                        
-                }   
+            //check log out firebase state
+            await service.authStateEvent.on('login',(user)=>{
+                //alert('LOGGED IN');
+                console.log(user)
+            });
+
+            await service.authStateEvent.on('login',(user)=>{
+                //alert('LOGGED IN');
+                console.log(user)
+            });
+
+
         }
+        checkLogIn();
     },[])
     
 
     /*useEffect(()=>{
-=======
-    const [userProfile, setUserProfile] = useState()
-
-    /* useEffect(()=>{
->>>>>>> 2db1457788e3d69844e63fd84ca973ad965ceac1
         const getUser = async () =>{
             try{
            const profile = await service.getProfile();

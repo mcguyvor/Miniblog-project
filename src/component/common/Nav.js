@@ -43,9 +43,10 @@ const Nav = (props) => {
             }
         }
         getUserInfo()
+        setIsLogIn(logIn); // update nav internal state for user logIn state whether the user is already log in or not
     }
 
-    , [])
+    , [logIn])
 
     const renderIsLogInIcon = () => {
         if (user) {
@@ -59,7 +60,7 @@ const Nav = (props) => {
 
                             <li className='list-group-item list-group-item-action'><Link style={{ color: 'black' }}>{user.user.displayName}</Link></li>
                             <li className='list-group-item list-group-item-action'><Link to= '/createblog' style={{ color: 'black' }}><img src={AddBlogIcon} className='mr-2' style={{ width: '1rem' }}/>Add blog</Link></li>
-                            <li className='list-group-item list-group-item-action'><Link onClick={() => setIsLogIn(false)} style={{ color: 'black' }}><img src={UserLogOutIcon} className='mr-2' style={{ width: '1rem' }}/>Log Out</Link></li>
+                            <li className='list-group-item list-group-item-action'><Link  style={{ color: 'black' }}><img src={UserLogOutIcon} className='mr-2' style={{ width: '1rem' }}/>Log Out</Link></li>
 
                         </ul>
 
@@ -94,7 +95,7 @@ const Nav = (props) => {
                         <li className='nav-item'><Link to='/' className='nav-link nav-link-color-black mr-2'><strong>Sport</strong></Link></li>
                         <li className='nav-item'><Link className='nav-link nav-link-color-black mr-2' onClick={() => setOpenSearch(true)}><img src={Search} style={{ width: '1rem' }}/></Link></li>
 
-                        <li className='nav-item'>{isLogIn ? renderIsLogInIcon() : <Link to = '/login' className='nav-link nav-link-color-black mr-2'><img src={LoginIcon} style={{ width: '1.5rem' }}/></Link>}</li>
+                        <li className='nav-item'>{isLogIn? renderIsLogInIcon() : <Link to = '/login' className='nav-link nav-link-color-black mr-2'><img src={LoginIcon} style={{ width: '1.5rem' }}/></Link>}</li>
 
                     </ul>
                 </div>
