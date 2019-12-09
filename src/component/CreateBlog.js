@@ -3,7 +3,7 @@ import axios from 'axios'
 import Nav from './common/Nav'
 import { Link } from 'react-router-dom'
 const Createblog = () => {
-    const initialValue = { title: '', detail1: '', detail2: '', category: '', imgUrl1: '', imgUrl2: '', imgUrl3: '', imgUrl4: '', user: '' }
+    const initialValue = { title: '', detail1: '', detail2: '',detail3: '',detail4: '' ,category: '', imgUrl1: '', imgUrl2: '', imgUrl3: '', imgUrl4: '' }
 
     const options = [
         { value: 'Technology', label: 'Technology' },
@@ -134,6 +134,21 @@ const Createblog = () => {
                     </div>
 
                     <div className='form-row mb-2'>
+                        <div className='col-12'>
+                            <label htmlFor='detail'>Body</label>
+                            <textarea className='form-control' rows="10" type='text' name='detail3' id='detail' onChange={handleChange} placeholder='Detail'/>
+
+                        </div>
+                    </div>
+
+                    <div className='form-row mb-2'>
+                        <div className='col-12'>
+                            <label htmlFor='detail'>Body</label>
+                            <textarea className='form-control' rows="10" type='text' name='detail4' id='detail' onChange={handleChange} placeholder='Detail'/>
+                        </div>
+                    </div>
+
+                    <div className='form-row mb-2'>
                         <div className='col-1'>
                             <label htmlFor='category'>Category</label>
                             <select className='custom-select' name ='category'onChange={handleChange} value={input.category} >
@@ -206,7 +221,6 @@ const Createblog = () => {
 
                     <button className='btn btn-outline-primary' type='submit'>Submit</button>
                 </form>
-
                 {finish ? <div className='mt-4'>
                     <h3>Add done</h3>
                     <button className='btn mt-3'><Link to='/'>Return to Admin home page</Link></button>
