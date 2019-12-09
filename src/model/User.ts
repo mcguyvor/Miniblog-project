@@ -1,9 +1,9 @@
 export interface DisplayImageInfo {
-    image: string
+    image: string;
 }
 
 export interface AnonymousInfo {
-    displayName: string
+    displayName: string;
 }
 
 export enum CurrentFeeling {
@@ -14,17 +14,17 @@ export enum CurrentFeeling {
 }
 
 export default interface User {
-    _id: string
-    uid: string
-    email: string
-    displayName?: string
-    age: number
-    description: string
-    displayImageInfo?: DisplayImageInfo 
-    gender: Gender
-    currentFeeling: CurrentFeeling[]
-    anonymousInfo: AnonymousInfo
-    isFriend?: boolean
+    _id: string;
+    uid: string;
+    email: string;
+    displayName?: string;
+    age: number;
+    description: string;
+    displayImageInfo?: DisplayImageInfo;
+    gender: Gender;
+    currentFeeling: CurrentFeeling[];
+    anonymousInfo: AnonymousInfo;
+    isFriend?: boolean;
 }
 
 export enum Gender {
