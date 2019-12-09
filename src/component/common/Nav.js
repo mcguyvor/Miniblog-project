@@ -11,7 +11,7 @@ import AddBlogIcon from '../../media/add.png'
 import Popover from 'react-tiny-popover'
 import { userInfo } from '../../action/index'
 import UserSessionService from '../../service/UserSessionService'
-
+import {isLogOut} from '../../action/index';
 const Nav = (props) => {
     // const logIn = props.isLogIn;
 
@@ -60,7 +60,7 @@ const Nav = (props) => {
 
                             <li className='list-group-item list-group-item-action'><Link style={{ color: 'black' }}>{user.user.displayName}</Link></li>
                             <li className='list-group-item list-group-item-action'><Link to= '/createblog' style={{ color: 'black' }}><img src={AddBlogIcon} className='mr-2' style={{ width: '1rem' }}/>Add blog</Link></li>
-                            <li className='list-group-item list-group-item-action'><Link  style={{ color: 'black' }}><img src={UserLogOutIcon} className='mr-2' style={{ width: '1rem' }}/>Log Out</Link></li>
+                            <li className='list-group-item list-group-item-action'><Link  style={{ color: 'black' }} onClick={handleLogOut}><img src={UserLogOutIcon} className='mr-2' style={{ width: '1rem' }}/>Log Out</Link></li>
 
                         </ul>
 
@@ -74,6 +74,17 @@ const Nav = (props) => {
 
                 </Popover>
             )
+        }
+    }
+
+    const handleLogOut = async () =>{
+         try {
+            await service.logout()
+            dispatch(isLogOut());
+            console.log('log out work')
+
+        }catch(error){
+            console.log(error.message)
         }
     }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Nav from './common/Nav'
 import { Link } from 'react-router-dom'
+import PostService from '../service/PostService'
 const Createblog = () => {
     const initialValue = { title: '', detail1: '', detail2: '',detail3: '',detail4: '' ,category: '', imgUrl1: '', imgUrl2: '', imgUrl3: '', imgUrl4: '' }
 
@@ -9,7 +10,9 @@ const Createblog = () => {
         { value: 'Technology', label: 'Technology' },
         { value: 'Finance', label: 'Finance' },
         { value: 'Industrial', label: 'Industrial' },
-        { value: 'Sport', label: 'Sport' }
+        { value: 'Sport', label: 'Sport' },
+        { value: 'Food', label: 'Food' },
+
     ]
     // form validator
     const initialValidate = {
@@ -26,6 +29,8 @@ const Createblog = () => {
     // error message form validator
     const [errorMessage, setError] = useState(initialValidate)
 
+    const service = new PostService;
+
     const handleChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
         console.log(input)
@@ -35,13 +40,15 @@ const Createblog = () => {
         setInput({ ...input, imgUrl: input.imgUrl.push() })
     }
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault()
         const isValid = validateForm()
         console.log(isValid)
         if (isValid) {
             // axios.post()
             // submitForm(input)
+
+            await service.createPost(input);
 
             setInput(initialValue)// put initial value for select category to none
             console.log(input.title)

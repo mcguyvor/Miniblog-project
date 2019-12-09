@@ -6,6 +6,15 @@ export const isLogIn = () => {
         }
     )
 }
+export const isLogOut = () => {
+    return (
+        {
+            type: 'IS_LOGOUT',
+            payload: false
+        }
+    )
+}
+
 
 export const userInfo = value => {
     return (
