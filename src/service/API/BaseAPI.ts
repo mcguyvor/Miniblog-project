@@ -15,7 +15,7 @@ export class AccessTokenExpire extends Error {
 }
 
 export default abstract class BaseAPI {
-    protected readonly BASE_URL = 'https://miniblock-api.herokuapp.com/v1'
+    private readonly BASE_URL = 'https://miniblock-api.herokuapp.com/v1'
     private headers: RequestHeader = {}
     private authProvider = authProvider
 
