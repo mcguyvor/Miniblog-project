@@ -5,7 +5,9 @@ export interface FirebaseAuthProvider {
     readonly currentUser: firebase.User | null;
 
     createUserWithEmailAndPassword(email: string, password: string): Promise<firebase.auth.UserCredential>;
+
     signInWithEmailAndPassword(email: string, password: string): Promise<firebase.auth.UserCredential>;
+    signOut(): Promise<void>;
 
     onAuthStateChanged(
         next: ((a: firebase.User | null) => any),
@@ -39,6 +41,10 @@ class FirebaseAuthProviderImpl implements FirebaseAuthProvider {
     async signInWithEmailAndPassword(email: string, password: string): Promise<firebase.auth.UserCredential> {
         await this.ensurePersistenceState()
         return this.auth.signInWithEmailAndPassword(email, password)
+    }
+
+    signOut(): Promise<void> {
+        return this.auth.signOut()
     }
 
     onAuthStateChanged(

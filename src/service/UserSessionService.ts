@@ -38,8 +38,12 @@ export default class UserSessionService {
         }
     }
 
-    async getProfile(): Promise<User> {
+    getProfile(): Promise<User> {
         return this.accountAPI.getProfile()
+    }
+
+    logout(): Promise<void> {
+        return this.authProvider.signOut()
     }
 
     isLoggedIn(): boolean {
