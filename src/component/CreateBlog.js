@@ -44,11 +44,27 @@ const Createblog = () => {
         e.preventDefault()
         const isValid = validateForm()
         console.log(isValid)
+        const submitValue = {
+            title : input.title,
+            category : input.category,
+            content :{
+                detail1:input.detail1,
+                detail2:input.detail2,
+                detail3:input.detail3,
+                detail4:input.detail4,
+                imgUrl1:input.imgUrl1,
+                imgUrl2:input.imgUrl2,
+                imgUrl3:input.imgUrl3,
+                imgUrl4:input.imgUrl4,
+
+
+            }
+        }
         if (isValid) {
             // axios.post()
             // submitForm(input)
 
-            await service.createPost(input);
+            await service.createPost(submitValue);
 
             setInput(initialValue)// put initial value for select category to none
             console.log(input.title)
