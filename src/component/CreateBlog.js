@@ -63,12 +63,16 @@ const Createblog = () => {
         if (isValid) {
             // axios.post()
             // submitForm(input)
+            console.log('Submit value',submitValue)
 
             await service.createPost(submitValue);
 
             setInput(initialValue)// put initial value for select category to none
             console.log(input.title)
             setFinish(true)
+
+        }else{
+            console.log('not valid')
         }
     }
 
