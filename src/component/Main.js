@@ -184,7 +184,7 @@ const Main = () =>{
                             return(
                                 <div className="col-lg-4 mb-4 ">
                                     <div className="entry2 hvr-float">
-                                        <a href="single.html"><img src={idx.content.imgUrl1? idx.imgUrl1:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)'}/></a>
+                                        <a href="single.html"><img src={idx.content.imgUrl1? idx.imgUrl1:'https://images.unsplash.com/photo-1532003885409-ed84d334f6cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80'} alt="Image" className="img-fluid rounded"/></a>
                                         <div className="excerpt">
                                             <span className="post-category text-white bg-secondary mb-3">{idx.category}</span>
 
