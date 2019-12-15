@@ -6,6 +6,7 @@ import UserSessionService from '../service/UserSessionService';
 import {useDispatch,useSelector} from 'react-redux';
 import {isLogIn} from '../action/index';
 import FeedService from '../service/FeedService';
+import moment from 'moment';
 const Main = () =>{
 
 
@@ -21,9 +22,15 @@ const Main = () =>{
 
     const [newFeed, setNewFeed] = useState([]);
 
-    const [topFeed, settopFeed] = useState([]);
+    const [topFeed, setTopFeed] = useState([]);
 
     const [newFeedPage,setNewFeedPage] = useState(1);
+
+    const [topFeedPage,setTopFeedPage] = useState(1);
+
+
+
+    console.log("is ", topFeed.length!==0? true : false)
 
     
     useEffect(()=>{
@@ -50,13 +57,16 @@ const Main = () =>{
         }
 
         const fetchTopFeed = async() =>{
-            const topFeed = await feedService.getFeedTop(1,6)
+            const topFeed = await feedService.getFeedTop(topFeedPage,5)
             console.log('top feed', topFeed)
+            setTopFeed(topFeed.posts)
+
         }
 
         const fetchNewFeed = async() => {
             const newFeed = await feedService.getFeedNew(newFeedPage,6)
             console.log('new feed',newFeed);
+            setNewFeed(newFeed.posts)
         }
 
         
@@ -104,53 +114,53 @@ const Main = () =>{
                     }
                     <div className="row align-items-stretch retro-layout-2">
                         <div className="col-md-4">
-                            <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}' }}>
+                           {topFeed.slice(0,2).map(idx => {
+                                return(
+                                    <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{ backgroundImage: idx.content.imgUrl1? `url(${idx.content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
 
-                                <div className="text">
-                                    <h2>The AI magically removes moving objects from videos. helo testnheroku</h2>
-                                    <span className="date">July 19, 2019</span>
-                                </div>
-                            </a>
-                            <a href="single.html" className="h-entry v-height gradient hvr-float" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}' }}>
-
-                                <div className="text">
-                                    <h2>The AI magically removes moving objects from videos.</h2>
-                                    <span className="date">July 19, 2019</span>
-                                </div>
-                            </a>
+                                    <div className="text">
+                                        <h2>{idx.title}</h2>
+                                        <span className="date">{moment(idx.createdAt).format('LL')}</span>
+                                    </div>
+                                </a>
+                                )
+                            })}
+                        
                         </div>
                         {
                         // for middle part of hot
                         }
                         <div className="col-md-4">
-                            <a href="single.html" className="h-entry img-5 h-100 gradient hvr-float" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}' }}>
+                            <a href="single.html" className="h-entry img-5 h-100 gradient hvr-float" style={{ backgroundImage: topFeed[2].content.imgUrl1? `url(${topFeed[2].content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
 
                                 <div className="text">
                                     <div className="post-categories mb-3">
                                         <span className="post-category bg-danger">Travel</span>
                                         <span className="post-category bg-primary">Food</span>
                                     </div>
-                                    <h2>The AI magically removes moving objects from videos.</h2>
-                                    <span className="date">July 19, 2019</span>
+                                    { <h2>{topFeed[2].title}</h2>}
+                                    <span className="date">{moment(topFeed[2].createdAt).format('LL')}</span>
                                 </div>
                             </a>
                         </div>
 
                         <div className="col-md-4">
-                            <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}' }}>
 
-                                <div className="text">
-                                    <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                    <span className="date">July 19, 2019</span>
-                                </div>
-                            </a>
-                            <a href="single.html" className="h-entry v-height gradient hvr-float" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}' }}>
+                            {topFeed.slice(3).map(idx=>{
 
-                                <div className="text">
-                                    <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                    <span className="date">July 19, 2019</span>
-                                </div>
-                            </a>
+                                        return(
+                                            <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{ backgroundImage: idx.content.imgUrl1? `url(${idx.content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
+
+                                            <div className="text">
+                                                <h2>{idx.title}</h2>
+                                                <span className="date">{moment(idx.createdAt).format('LL')}</span>
+                                            </div>
+                                        </a>
+                                        )
+                                    }
+                                )    
+                            }    
+                           
                         </div>
                     </div>
                 </div>
@@ -159,7 +169,7 @@ const Main = () =>{
         )
     }
 
-    const renderFeed = () => {
+    const renderNewFeed = () => {
         return (
             <div className="site-section">
                 <div className="container">
@@ -170,24 +180,29 @@ const Main = () =>{
                     </div>
 
                     <div className="row">
-                        <div className="col-lg-4 mb-4 ">
-                            <div className="entry2 hvr-float">
-                                <a href="single.html"><img src="https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}" alt="Image" className="img-fluid rounded"/></a>
-                                <div className="excerpt">
-                                    <span className="post-category text-white bg-secondary mb-3">Politics</span>
+                        {newFeed.map(idx=>{
+                            return(
+                                <div className="col-lg-4 mb-4 ">
+                                    <div className="entry2 hvr-float">
+                                        <a href="single.html"><img src={idx.content.imgUrl1? idx.imgUrl1:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)'}/></a>
+                                        <div className="excerpt">
+                                            <span className="post-category text-white bg-secondary mb-3">{idx.category}</span>
 
-                                    <h2><a href="single.html">The AI magically removes moving objects from videos.</a></h2>
-                                    <div className="post-meta align-items-center text-left clearfix">
-                                        <figure className="author-figure mb-0 mr-3 float-left"><img src="https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}" alt="Image" className="img-fluid"/></figure>
-                                        <span className="d-inline-block mt-1">By <a href="#">Carrol Atkinson</a></span>
-                                        <span>&nbsp;-&nbsp; July 19, 2019</span>
+                                            <h2><a href="single.html">{idx.title}</a></h2>
+                                            <div className="post-meta align-items-center text-left clearfix">
+                                                <figure className="author-figure mb-0 mr-3 float-left"><img src="https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}" alt="Image" className="img-fluid"/></figure>
+                                                <span className="d-inline-block mt-1">By <a href="#">{idx.creator.anonymousInfo.displayName}</a></span>
+                                                <span>&nbsp;-&nbsp; {moment(idx.createdAt).format('LL')}</span>
+                                            </div>
+
+                                            <p>{idx.content.detail1}</p>
+                                            <p><a href="#">Read More</a></p>
+                                        </div>
                                     </div>
-
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sunt tempora dolor laudantium sed optio, explicabo ad deleniti impedit facilis fugit recusandae! Illo, aliquid, dicta beatae quia porro id est.</p>
-                                    <p><a href="#">Read More</a></p>
                                 </div>
-                            </div>
-                        </div>
+                            )
+                        })}
+                        
                     </div>
                 </div>
             </div>
@@ -268,11 +283,12 @@ const Main = () =>{
     return (
         <div>
             <Nav />
-            {renderTop()}
-            {renderFeed()}
+            {topFeed.length!==0? renderTop():null}
+            {newFeed.length!==0? renderNewFeed():null}
             {renderPagination()}
             {renderHotOfCategory()}
             <Subscribe/>
+            
         </div>
     )
 }

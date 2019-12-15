@@ -4,7 +4,7 @@ import Nav from './common/Nav'
 import { Link } from 'react-router-dom'
 import PostService from '../service/PostService'
 const Createblog = () => {
-    const initialValue = { title: '', detail1: '', detail2: '',detail3: '',detail4: '' ,category: '', imgUrl1: '', imgUrl2: '', imgUrl3: '', imgUrl4: '' }
+    const initialValue = { title: '', detail1: '', detail2: '',detail3: '',detail4: '' ,category: '', imgUrl1: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG', imgUrl2: '', imgUrl3: '', imgUrl4: '' }
 
     const options = [
         { value: 'Technology', label: 'Technology' },
