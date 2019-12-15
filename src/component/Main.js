@@ -191,7 +191,7 @@ const Main = () =>{
                                             <h2><a href="single.html">{idx.title}</a></h2>
                                             <div className="post-meta align-items-center text-left clearfix">
                                                 <figure className="author-figure mb-0 mr-3 float-left"><img src="https://images.unsplash.com/photo-1562886929-c29b9a76b0a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80}" alt="Image" className="img-fluid"/></figure>
-                                                <span className="d-inline-block mt-1">By <a href="#">{idx.creator.anonymousInfo.displayName}</a></span>
+                                                <span className="d-inline-block mt-1">By <a href="#">{idx.creator.displayName}</a></span>
                                                 <span>&nbsp;-&nbsp; {moment(idx.createdAt).format('LL')}</span>
                                             </div>
 
