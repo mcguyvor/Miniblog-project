@@ -5,6 +5,7 @@ import '../style/Main.css';
 import UserSessionService from '../service/UserSessionService';
 import {useDispatch,useSelector} from 'react-redux';
 import {isLogIn} from '../action/index';
+import FeedService from '../service/FeedService';
 const Main = () =>{
 
 
@@ -16,6 +17,14 @@ const Main = () =>{
 
     const service = new UserSessionService();
     
+    const feedService = new FeedService();
+
+    const [newFeed, setNewFeed] = useState([]);
+
+    const [topFeed, settopFeed] = useState([]);
+
+    const [newFeedPage,setNewFeedPage] = useState(1);
+
     
     useEffect(()=>{
         const checkLogIn = async() => {
@@ -39,7 +48,25 @@ const Main = () =>{
 
 
         }
+
+        const fetchTopFeed = async() =>{
+            const topFeed = await feedService.getFeedTop()
+            console.log('top feed', topFeed)
+        }
+
+        const fetchNewFeed = async() => {
+            const newFeed = await feedService.getFeedNew(newFeedPage,6)
+            console.log('new feed',newFeed);
+        }
+
+        
+
         checkLogIn();
+
+        fetchNewFeed();
+
+        fetchTopFeed();
+
     },[])
     
 
