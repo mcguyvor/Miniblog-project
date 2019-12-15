@@ -50,7 +50,7 @@ const Main = () =>{
         }
 
         const fetchTopFeed = async() =>{
-            const topFeed = await feedService.getFeedTop()
+            const topFeed = await feedService.getFeedTop(1,6)
             console.log('top feed', topFeed)
         }
 
