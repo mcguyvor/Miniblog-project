@@ -25,6 +25,13 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "@typescript-eslint/no-inferrable-types": [
+            "error",
+            {
+                "ignoreParameters": true,
+                "ignoreProperties": false
+            }
+        ],
         "@typescript-eslint/no-explicit-any": "off",
         "no-unused-expressions": "error",
         "no-unused-labels": "error",

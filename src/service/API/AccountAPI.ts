@@ -17,20 +17,12 @@ export default class AccountAPI extends BaseAPI {
 
     async register(registerInfo: RegisterInfo): Promise<User> {
         const response = await this.post(this.BASE_PATH + Path.REGISTER, registerInfo)
-        if (this.isOkResponse(response)) {
-            return response.body
-        } else {
-            throw Error(response.body.message)
-        }
+        return this.validateResponse(response)
     }
 
     async getProfile(): Promise<User> {
         await this.setAuthToken()
         const response = await this.get(this.BASE_PATH + Path.PROFILE)
-        if (this.isOkResponse(response)) {
-            return response.body
-        } else {
-            throw Error(response.body.message)
-        }
+        return this.validateResponse(response)
     }
 }

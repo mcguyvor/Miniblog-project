@@ -7,13 +7,14 @@ export enum PostType {
 }
 
 export type PostContentInfo = {
-    link?: string;
-    text?: string;
-    imageInfo?: {
-        image: string;
-        width?: number;
-        height?: number;
-    };
+    detail1: string;
+    detail2?: string;
+    detail3?: string;
+    detail4?: string;
+    imgUrl1?: string;
+    imgUrl2?: string;
+    imgUrl3?: string;
+    imgUrl4?: string;
 }
 
 export enum Reaction {
@@ -31,7 +32,7 @@ export default interface Post {
     post: any;
     _id: string;
     title: string;
-    categoryId: number;
+    category: string;
     type: PostType;
     content: PostContentInfo;
     creator: User;

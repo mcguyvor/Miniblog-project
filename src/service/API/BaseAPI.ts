@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import { HTTPResponse, Response, ResponseStatus, ErrorResponse } from './Response'
 import authProvider from '../FirebaseAuthProvider'
+import * as querystring from 'querystring'
 
 interface RequestHeader {
     authorization?: string;
@@ -19,8 +20,16 @@ export default abstract class BaseAPI {
     private headers: RequestHeader = {}
     private authProvider = authProvider
 
-    protected isOkResponse(response: HTTPResponse): response is Response {
+    private isOkResponse(response: HTTPResponse): response is Response {
         return response.status === ResponseStatus.OK
+    }
+
+    protected validateResponse<T>(response: HTTPResponse): T {
+        if (this.isOkResponse(response)) {
+            return response.body
+        } else {
+            throw Error(response.body.message)
+        }
     }
 
     protected async setAuthToken(): Promise<void> {
@@ -31,6 +40,19 @@ export default abstract class BaseAPI {
         try {
             const token = await currentUser.getIdToken()
             this.headers.authorization = `Bearer ${token}`
+        } catch (error) {
+            console.log(error)
+            throw new AccessTokenExpire()
+        }
+    }
+
+    protected async setAuthTokenOptional(): Promise<void> {
+        const currentUser = authProvider.currentUser
+        try {
+            if (currentUser) {
+                const token = await currentUser.getIdToken()
+                this.headers.authorization = `Bearer ${token}`
+            }
         } catch (error) {
             console.log(error)
             throw new AccessTokenExpire()
@@ -55,5 +77,16 @@ export default abstract class BaseAPI {
     protected async delete<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
         const response = await Axios.delete(this.BASE_URL + path, { params, headers: this.headers })
         return response.data
+    }
+
+    protected queryString(obj: any): string {
+        const cleanedObj: any = {}
+        const entries = Object.entries(obj)
+        for (const entry of entries) {
+            if (entry[1] !== null && entry[1] !== undefined) {
+                cleanedObj[entry[0]] = entry[1]
+            }
+        }
+        return '?' + querystring.stringify(cleanedObj)
     }
 }
