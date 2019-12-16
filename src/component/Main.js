@@ -209,6 +209,48 @@ const Main = () =>{
         )
     }
 
+
+    const renderNewFeed2 = () => {
+        return (
+            <div className="site-section">
+                <div className="container">
+                    <div className="row mb-5">
+                        <div className="col-12">
+                            <h2>Feed</h2>
+                        </div>
+                    </div>
+
+                    <div className="card-deck">
+                        {newFeed.slice(0,3).map(idx=>{
+                            return(
+                                <div className="card">
+                                <img className="card-img-top" src={idx.content.imgUrl1} alt="Card image cap"/>
+                                <div className="card-body">
+                                    <span className="post-category text-white bg-secondary mb-3">{idx.category}</span>
+                                    <h5 className="card-title">{idx.title.slice(0,100)}</h5>
+                                    <p className="card-text">{`${idx.content.detail1.slice(0,100)}...`}</p>
+                                    <div className="post-meta align-items-center text-left clearfix">
+                                                <span className="d-inline-block mt-1">By <a href="#">{idx.creator.displayName}</a></span>
+                                                <span>&nbsp;-&nbsp; {moment(idx.createdAt).format('LL')}</span>
+                                            </div>
+                                </div>
+                                <div className="card-footer">
+                                  <small>Readmore</small>
+                                </div>
+                              </div>
+                                
+                            )
+                        })}
+                        
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+
+
+
     const renderPagination = () => {
         return (
             <div className='container'>
@@ -284,7 +326,7 @@ const Main = () =>{
         <div>
             <Nav />
             {topFeed.length!==0? renderTop():null}
-            {newFeed.length!==0? renderNewFeed():null}
+            {newFeed.length!==0? renderNewFeed2():null}
             {renderPagination()}
             {renderHotOfCategory()}
             <Subscribe/>
