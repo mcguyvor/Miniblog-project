@@ -19,7 +19,7 @@ const Createblog = () => {
         titleError: '',
         detailError1: '',
         categoryError: '',
-        userNameError: '',
+      //  userNameError: '',
         imgUrlError: ''
     }
     // input state
@@ -80,7 +80,7 @@ const Createblog = () => {
         let titleError = ''
         let detailError1 = ''
         let categoryError = ''
-        let userNameError = ''
+        //let userNameError = ''
         let imgUrlError = ''
         const numbers = /^[-+]?[0-9]+$/
         const letters = /^[A-Za-z]+$/
@@ -101,17 +101,17 @@ const Createblog = () => {
         if (!input.imgUrl1.match(url)) {
             imgUrlError = 'Please enter the valid url'
         }
-        if (!input.user) {
-            userNameError = 'Please enter Admin name'
-        }
+       // if (!input.user) {
+         //   userNameError = 'Please enter Admin name'
+        //}
         // set state of the error
-        if (titleError || detailError1 || categoryError || userNameError || imgUrlError) {
+        if (titleError || detailError1 || categoryError  || imgUrlError) {// if need userNameError back put this userNameError in if
             setError({
                 ...errorMessage,
                 titleError: titleError,
                 detailError: detailError1,
                 categoryError: categoryError,
-                userNameError: userNameError,
+                //userNameError: userNameError,
                 imgUrlError: imgUrlError
             })
             return false
@@ -194,7 +194,7 @@ const Createblog = () => {
                         </div>
                     </div>
 
-                    <div className='form-row mb-2'>
+                    {/*<div className='form-row mb-2'>
 
                         <div className='col-4'>
                             <label htmlFor='by'>By</label>
@@ -204,7 +204,7 @@ const Createblog = () => {
                             </div>
                         </div>
 
-                    </div>
+                            </div> */}
 
                     <div className='form-row mb-2'>
 
