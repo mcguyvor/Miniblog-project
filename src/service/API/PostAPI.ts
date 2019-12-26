@@ -13,4 +13,10 @@ export default class PostAPI extends BaseAPI {
         const response = await this.post(this.BASE_PATH, postInfo)
         return this.validateResponse(response)
     }
+
+    async getPost(id: string): Promise<Post> {
+        await this.setAuthTokenOptional()
+        const response = await this.get(this.BASE_PATH + `/${id}`)
+        return this.validateResponse(response)
+    }
 }

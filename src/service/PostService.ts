@@ -7,4 +7,8 @@ export default class PostService {
     async createPost(postInfo: PostInfo): Promise<Post> {
         return this.postAPI.createPost(postInfo)
     }
+
+    async getPost(id: string): Promise<Post> {
+        return this.postAPI.getPost(id)
+    }
 }
