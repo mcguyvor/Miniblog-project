@@ -10,7 +10,9 @@ export default class UserSessionService {
 
     authStateEvent: AuthStateEvent = new EventEmitter()
 
-    constructor() {
+    static shared = new UserSessionService()
+
+    private constructor() {
         this.observeAuthStateChange()
     }
 
@@ -57,6 +59,7 @@ export default class UserSessionService {
                 this.getProfile().then((fetchedUser) => {
                     this.authStateEvent.emit('login', fetchedUser)
                 }).catch((error) => {
+                    console.log('Auth state error:', error.message)
                     this.authStateEvent.emit('error', error)
                 })
             } else {

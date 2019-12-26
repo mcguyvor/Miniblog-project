@@ -18,7 +18,7 @@ const LogInPage = (props) => {
 
     const [loading, setLoading] = useState(false)
 
-    const service = new UserSessionService()
+    const service = UserSessionService.shared
 
     const dispatch = useDispatch()
 

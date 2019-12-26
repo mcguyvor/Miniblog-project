@@ -25,7 +25,7 @@ const Nav = (props) => {
 
     const [isPopOverOpen, setIsPopOverOpen] = useState(false)
 
-    const service = new UserSessionService()
+    const service = UserSessionService.shared
 
     const dispatch = useDispatch()
 

@@ -16,7 +16,7 @@ const Main = () =>{
     
     const dispath = useDispatch();
 
-    const service = new UserSessionService();
+    const service = UserSessionService.shared
     
     const feedService = new FeedService();
 
@@ -53,6 +53,9 @@ const Main = () =>{
                 console.log(user)
             });
 
+            service.authStateEvent.on('error', (error) => {
+                alert(error.message)
+            })
 
         }
 
