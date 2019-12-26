@@ -12,7 +12,7 @@ function App() {
             <Route exact path = '/createblog' component = {CreateBlog} />
             <Route exact path = '/login' component = {LogInPage} />
             <Route exact path = '/register' component = {Register} />
-            <Route exact path = '/artile/:id' component ={SingleBlog}
+            <Route exact path = '/article/:id' component ={SingleBlog}/>
         </Switch>
     )
 }
