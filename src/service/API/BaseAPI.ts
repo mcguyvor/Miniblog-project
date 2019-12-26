@@ -24,11 +24,16 @@ export default abstract class BaseAPI {
         return response.status === ResponseStatus.OK
     }
 
-    protected validateResponse<T>(response: HTTPResponse): T {
+    private isErrorResponse(response: HTTPResponse): response is ErrorResponse {
+        return response.status === ResponseStatus.ERROR
+    }
+
+    protected async validateResponse<T>(response: HTTPResponse): Promise<T> {
         if (this.isOkResponse(response)) {
             return response.body
         } else {
-            throw Error(response.body.message)
+            const error = response as ErrorResponse
+            throw Error(error.body.message)
         }
     }
 
@@ -60,23 +65,59 @@ export default abstract class BaseAPI {
     }
 
     protected async get<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
-        const response = await Axios.get(this.BASE_URL + path, { params, headers: this.headers })
-        return response.data
+        try {
+            const response = await Axios.get(this.BASE_URL + path, { params, headers: this.headers })
+            return response.data
+        } catch (err) {
+            const responseData = err.response.data
+            if (this.isErrorResponse(responseData)) {
+                return responseData
+            } else {
+                throw err
+            }
+        }
     }
 
     protected async post<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
-        const response = await Axios.post(this.BASE_URL + path, params, { headers: this.headers })
-        return response.data
+        try {
+            const response = await Axios.post(this.BASE_URL + path, params, { headers: this.headers })
+            return response.data
+        } catch (err) {
+            const responseData = err.response.data
+            if (this.isErrorResponse(responseData)) {
+                return responseData
+            } else {
+                throw err
+            }
+        }
     }
 
     protected async put<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
-        const response = await Axios.put(this.BASE_URL + path, params, { headers: this.headers })
-        return response.data
+        try {
+            const response = await Axios.put(this.BASE_URL + path, params, { headers: this.headers })
+            return response.data
+        } catch (err) {
+            const responseData = err.response.data
+            if (this.isErrorResponse(responseData)) {
+                return responseData
+            } else {
+                throw err
+            }
+        }
     }
 
     protected async delete<T = any>(path: string, params: any = null): Promise<Response<T> | ErrorResponse> {
-        const response = await Axios.delete(this.BASE_URL + path, { params, headers: this.headers })
-        return response.data
+        try {
+            const response = await Axios.delete(this.BASE_URL + path, { params, headers: this.headers })
+            return response.data
+        } catch (err) {
+            const responseData = err.response.data
+            if (this.isErrorResponse(responseData)) {
+                return responseData
+            } else {
+                throw err
+            }
+        }
     }
 
     protected queryString(obj: any): string {

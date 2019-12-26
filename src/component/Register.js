@@ -10,7 +10,7 @@ const Register = (props) => {
 
     const [errorMessage, setError] = useState(initialValidate)
 
-    const service = new UserSessionService()
+    const service = UserSessionService.shared
 
     const [done, setDone] = useState(false)
 
