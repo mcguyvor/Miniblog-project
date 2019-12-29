@@ -1,4 +1,4 @@
-import FeedAPI, { FeedType } from './API/FeedAPI'
+import FeedAPI, { FeedType } from './api/FeedAPI'
 import Post from '../model/Post'
 
 export default class FeedService {

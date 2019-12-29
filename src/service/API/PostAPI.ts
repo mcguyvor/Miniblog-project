@@ -1,4 +1,4 @@
-import BaseAPI from './BaseAPI'
+import BaseAPI from './baseAPI'
 import Post from '../../model/Post'
 import { Reaction } from '../../model/Post'
 
