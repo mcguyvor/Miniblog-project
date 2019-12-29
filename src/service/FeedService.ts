@@ -13,4 +13,8 @@ export default class FeedService {
         const feed = await this.feedAPI.getFeed(FeedType.TOP, page, limit, category)
         return feed
     }
+
+    async searchFeed(keyword: string, page: number = 1, limit: number = 20): Promise<Post[]> {
+        return this.feedAPI.search(keyword, page, limit)
+    }
 }
