@@ -93,19 +93,19 @@ const SingleBlog = (props) => {
                             
                                     <div className="col-md-12 mb-4">
                                 
-                                        <img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid rounded"/>
+                                        <img src="images/img_1.jpg" alt="Image placeholder" className="img-fluid rounded"/>
                            
                                     </div>
 
-                                    <div class="col-md-6 mb-4">
+                                    <div className="col-md-6 mb-4">
                                         
-                                        <img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid rounded"/>
+                                        <img src="images/img_2.jpg" alt="Image placeholder" className="img-fluid rounded"/>
                                     
                                     </div>
                             
-                                    <div class="col-md-6 mb-4">
+                                    <div className="col-md-6 mb-4">
                                         
-                                        <img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid rounded"/>
+                                        <img src="images/img_3.jpg" alt="Image placeholder" className="img-fluid rounded"/>
                                     
                                     </div>
                                 </div>
@@ -213,6 +213,15 @@ const SingleBlog = (props) => {
               
               </ul>
             
+            </div>
+        )
+    }
+
+    const renderLike = () =>{
+        return(
+            
+            <div className='sidebar-box'>
+                <img src={} alt='Like'/>
             </div>
         )
     }
