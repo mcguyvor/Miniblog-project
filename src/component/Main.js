@@ -7,6 +7,7 @@ import UserSessionService from '../service/UserSessionService';
 import {useDispatch,useSelector} from 'react-redux';
 import FeedService from '../service/FeedService';
 import moment from 'moment';
+import Loading from './common/Loading';
 const Main = () =>{
 
 
@@ -26,32 +27,23 @@ const Main = () =>{
 
     const [topFeedPage,setTopFeedPage] = useState(1);
 
-    console.log("is ", topFeed.length!==0? true : false)
-
+    const [isLoading,setIsLoading] = useState(true);    
     
     useEffect(()=>{
         
 
-        const fetchTopFeed = async() =>{
-            const topFeed = await feedService.getFeedTop(topFeedPage,5)
-            console.log('top feed', topFeed)
-            setTopFeed(topFeed.posts)
+        const fetch= async() =>{
+            const topFeed = await feedService.getFeedTop(topFeedPage,5);
+            setTopFeed(topFeed.posts);
 
-        }
-
-        const fetchNewFeed = async() => {
             const newFeed = await feedService.getFeedNew(newFeedPage,6)
-            console.log('new feed',newFeed);
-            setNewFeed(newFeed.posts)
+            setNewFeed(newFeed.posts);
+
+            setIsLoading(false);
         }
 
-        
-
-
-        fetchNewFeed();
-
-        fetchTopFeed();
-
+        fetch();
+    
     },[])
     
 
@@ -283,11 +275,18 @@ const Main = () =>{
     return (
         <div>
             <Nav />
-            {topFeed.length!==0? renderTop():null}
-            {newFeed.length!==0? renderNewFeed2():null}
-            {renderPagination()}
-            {renderHotOfCategory()}
-            <Subscribe/>
+            {isLoading? 
+                <Loading/>
+                :
+                <div>
+                {topFeed.length!==0? renderTop():null}
+                {newFeed.length!==0? renderNewFeed2():null}
+                {renderPagination()}
+                {renderHotOfCategory()}
+                <Subscribe/>
+                </div>
+            }
+            
             
         </div>
     )

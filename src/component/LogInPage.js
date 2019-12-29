@@ -5,7 +5,7 @@ import '../style/Login.css'
 import Nav from './common/Nav'
 import UserSessionService from '../service/UserSessionService'
 import { isLogIn } from '../action/index'
-import { Spinner } from 'reactstrap'
+import Loading from './common/Loading';
 
 const LogInPage = (props) => {
     const initialInput = { email: '', password: '' }
@@ -94,23 +94,11 @@ const LogInPage = (props) => {
         )
     }
 
-    const renderLoading = () => {
-        return (
-            <div className='loading'>
-                <Spinner type="grow" color="primary" style={{ width: '3rem', height: '3rem' }} />
-                <Spinner type="grow" color="secondary" style={{ width: '3rem', height: '3rem' }} />
-                <Spinner type="grow" color="success" style={{ width: '3rem', height: '3rem' }} />
-                <Spinner type="grow" color="danger" style={{ width: '3rem', height: '3rem' }} />
-                <Spinner type="grow" color="warning" style={{ width: '3rem', height: '3rem' }} />
-                <Spinner type="grow" color="info" style={{ width: '3rem', height: '3rem' }} />
-                <Spinner type="grow" color="dark" style={{ width: '3rem', height: '3rem' }} />
-            </div>
-        )
-    }
+    
     return (
         <div>
             <Nav/>
-            {loading ? renderLoading() : renderLoginForm()}
+            {loading ? <Loading/> : renderLoginForm()}
         </div>
     )
 }
