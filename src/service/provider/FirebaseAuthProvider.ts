@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import firebaseProvider from './FirebaseProvider'
+import firebaseProvider from './firebaseProvider'
 
 export interface FirebaseAuthProvider {
     readonly currentUser: firebase.User | null;

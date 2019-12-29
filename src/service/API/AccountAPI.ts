@@ -1,4 +1,4 @@
-import BaseAPI from './BaseAPI'
+import BaseAPI from './baseAPI'
 import User from '../../model/User'
 
 export interface RegisterInfo {

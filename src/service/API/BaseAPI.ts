@@ -1,6 +1,6 @@
-import Axios from 'axios'
-import { HTTPResponse, Response, ResponseStatus, ErrorResponse } from './Response'
-import authProvider from '../FirebaseAuthProvider'
+import Axios from './node_modules/axios'
+import { HTTPResponse, Response, ResponseStatus, ErrorResponse } from './response'
+import authProvider from '../provider/firebaseAuthProvider'
 import * as querystring from 'querystring'
 
 interface RequestHeader {

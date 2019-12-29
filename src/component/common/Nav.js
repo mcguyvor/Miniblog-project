@@ -10,7 +10,7 @@ import UserLogOutIcon from '../../media/logout.png'
 import AddBlogIcon from '../../media/add.png'
 import Popover from 'react-tiny-popover'
 import { userInfo } from '../../action/index'
-import UserSessionService from '../../service/UserSessionService'
+import UserSessionService from '../../service/userSessionService'
 import {isLogOut} from '../../action/index';
 const Nav = (props) => {
     // const logIn = props.isLogIn;

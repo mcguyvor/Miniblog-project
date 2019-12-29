@@ -1,5 +1,5 @@
-import Post from '../model/Post'
-import PostAPI, { PostInfo } from './API/PostAPI'
+import Post, { Reaction } from '../model/Post'
+import PostAPI, { PostInfo } from './api/PostAPI'
 
 export default class PostService {
     private postAPI = new PostAPI()
@@ -10,5 +10,17 @@ export default class PostService {
 
     async getPost(id: string): Promise<Post> {
         return this.postAPI.getPost(id)
+    }
+
+    async likePost(id: string): Promise<Post> {
+        return this.postAPI.reactPost(id, Reaction.LIKE)
+    }
+
+    async unlikePost(id: string): Promise<Post> {
+        return this.postAPI.reactPost(id, Reaction.NONE)
+    }
+
+    async commentPost(id: string, text: string): Promise<Post> {
+        return this.postAPI.commentPost(id, text)
     }
 }

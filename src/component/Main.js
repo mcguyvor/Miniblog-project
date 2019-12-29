@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 import Nav from './common/Nav';
 import Subscribe from '../component/common/Subscribe';
 import '../style/Main.css';
-import UserSessionService from '../service/UserSessionService';
+import UserSessionService from '../service/userSessionService';
 import {useDispatch,useSelector} from 'react-redux';
 import {isLogIn} from '../action/index';
-import FeedService from '../service/FeedService';
+import FeedService from '../service/feedService';
 import moment from 'moment';
 const Main = () =>{
 

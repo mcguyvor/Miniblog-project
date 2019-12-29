@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events'
-import User from '../model/User'
+import User from '../../model/User'
 
 export default interface AuthStateEvent extends EventEmitter {
     on(event: 'login', listener: (user: User) => void): this;
