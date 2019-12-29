@@ -3,6 +3,8 @@ import Nav from './common/Nav'
 import PostService from '../service/PostService'
 import moment from 'moment';
 import {Link} from 'react-router-dom';
+import FeedService from '../service/FeedService';
+
 const SingleBlog = (props) => {
     const mockUrl1 = 'https://images.unsplash.com/photo-1575438481582-b971d5a00fb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
 
@@ -18,23 +20,32 @@ const SingleBlog = (props) => {
 
     const [detail, setDetail] = useState('');
 
+    const [popularPost,setPopularPost] = useState([]);
+
+    const feedService = new FeedService();
+
     
     useEffect(()=>{
         const fetch = async()=>{
             const data = await postService.getPost(props.match.params.id);
             setDetail(data.post);
+            const fetchPopularPost = await feedService.getFeedTop(1,3);
+            setPopularPost(fetchPopularPost);
         }
         fetch();
     },[])
+
     
     const renderCoverImg = () => {
+
         return (
-            <div className="site-cover site-cover-sm same-height overlay single-page mb-5" style={{ backgroundImage: `url(${mockUrl1})` }}>
+           
+           <div className="site-cover site-cover-sm same-height overlay single-page mb-5" style={{ backgroundImage: `url(${mockUrl1})` }}>
                 <div className="container">
                     <div className="row same-height justify-content-center">
                         <div className="col-md-12 col-lg-10">
                             <div className="post-entry text-center">
-        <span className="post-category text-white bg-success mb-3">{detail.category}</span>
+                                <span className="post-category text-white bg-success mb-3">{detail.category}</span>
                                 <h1 className="mb-4">{detail.title}</h1>
                                 <div className="post-meta align-items-center text-center">
                                     <figure className="author-figure mb-0 mr-3 d-inline-block"><img src={mockUserImg} alt="Image" className="img-fluid"/></figure>
@@ -52,9 +63,7 @@ const SingleBlog = (props) => {
     const renderMainSection = () => {
         
             return(
-                <div className="container ">
-        
-                    <div className="row blog-entries element-animate">
+           
 
                         <div className="col-md-12 col-lg-8 main-content">
                         
@@ -85,41 +94,101 @@ const SingleBlog = (props) => {
                                     </div>
                                 </div>
 
-                                <p>Quibusdam autem, quas molestias recusandae aperiam molestiae modi qui ipsam vel. Placeat tenetur veritatis tempore quos impedit dicta, error autem, quae sint inventore ipsa quidem. Quo voluptate quisquam reiciendis, minus, animi minima eum officia doloremque repellat eos, odio doloribus cum.</p>
-                                <p>Temporibus quo dolore veritatis doloribus delectus dolores perspiciatis recusandae ducimus, nisi quod, incidunt ut quaerat, magnam cupiditate. Aut, laboriosam magnam, nobis dolore fugiat impedit necessitatibus nisi cupiditate, quas repellat itaque molestias sit libero voluptas eveniet omnis illo ullam dolorem minima.</p>
-                                <p>Porro amet accusantium libero fugit totam, deserunt ipsa, dolorem, vero expedita illo similique saepe nisi deleniti. Cumque, laboriosam, porro! Facilis voluptatem sequi nulla quidem, provident eius quos pariatur maxime sapiente illo nostrum quibusdam aliquid fugiat! Earum quod fuga id officia.</p>
-                                <p>Illo magnam at dolore ad enim fugiat ut maxime facilis autem, nulla cumque quis commodi eos nisi unde soluta, ipsa eius aspernatur sint atque! Nihil, eveniet illo ea, mollitia fuga accusamus dolor dolorem perspiciatis rerum hic, consectetur error rem aspernatur!</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magni explicabo id molestiae, minima quas assumenda consectetur, nobis neque rem, incidunt quam tempore perferendis provident obcaecati sapiente, animi vel expedita omnis quae ipsa! Obcaecati eligendi sed odio labore vero reiciendis facere accusamus molestias eaque impedit, consequuntur quae fuga vitae fugit?</p>
+                                <p>{}</p>
                             
                             </div>
                         </div>
-                    </div>
-                </div>
+                  
             )
     }
 
     const renderCategories = () =>{
         return(
 
-            <div className='container'>
-
                 <div className="pt-5">
 
                     <p>Categories:  <Link to="#">{detail && detail.category}</Link></p>
                 
                 </div>
-            
-            </div>
-    
+
         )
     }
+
+    const renderSidebarProfile = () =>{
+        
+        return( 
+            
+            detail&& // wait for detail to finish fetch before render content
+   
+                <div className="sidebar-box">
+                    
+                    <div className="bio text-center">
+                        
+                        <img src="https://siamrath.co.th/files/styles/1140/public/img/20190811/1bebd9268892945e74b2ba669a881b7071250b816cb97cc053111463718ccb5c.jpg?itok=kRopIDa0" alt="Image Placeholder" className="img-fluid mb-5"/>
+                            
+                            <div className="bio-body">
+                                <h2>{detail.creator.displayName}</h2>
+                                <p className="mb-4">For user story</p>
+                            </div>
+                    
+                    </div>
+                
+                </div>
+            
+          
+
+        )
+    }
+
+    const renderSidebarPopularPost = () =>{
+        
+        return(
+
+            <div className='sidebar-box'>
+
+                <h3 className="heading">Popular Posts</h3>
+
+                <div className="post-entry-sidebar">
+
+                    <ul>
+
+                        <li>
+                            <Link to={`/article/`} >
+                                <img src="images/img_1.jpg" alt="Image placeholder" class="mr-4"/>
+                                    <div class="text">
+                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                        <div class="post-meta">
+                                        <span class="mr-2">March 15, 2018 </span>
+                                        </div>
+                                    </div>
+                            </Link>
+                        </li>    
+                    
+                    </ul>
+                
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
             <Nav/>
             {detail &&renderCoverImg()}
-            {renderMainSection()}
-            {renderCategories()}
+            <section  className="site-section py-lg">
+                <div  className="container">
+                    <div className="row blog-entries element-animate">
+                        {renderMainSection()}
+                        <div className='col-md-12 col-lg-4 sidebar'>
+                            {renderSidebarProfile()}
+                            {renderSidebarPopularPost()}
+                        </div>
+                    </div>
+                    {renderCategories()}
+                </div>
+                
+            </section>
+           
 
 
         </div>

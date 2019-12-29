@@ -29,8 +29,6 @@ const Main = () =>{
 
     const [topFeedPage,setTopFeedPage] = useState(1);
 
-
-
     console.log("is ", topFeed.length!==0? true : false)
 
     

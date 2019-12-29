@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import NewsletterService from '../../service/NewsletterService';
+
 const Subscribe = () => {
-    const initialInput = { email: '' }
-    const [input, setInput] = useState(initialInput)
+    const initialInput = { email: '' } 
+
+    const [input, setInput] = useState(initialInput);
+
+    const newLetterService = new NewsletterService();
 
     // form validator
 
     const initialValidate = { emailError: '' }
 
-    const [errorMessage, setError] = useState(initialValidate)
+    const [errorMessage, setError] = useState(initialValidate);
 
     const validateForm = () => {
         let emailError = ''
@@ -31,6 +35,7 @@ const Subscribe = () => {
         const isValid = validateForm()
         if (isValid) {
             // post method to end point
+            newLetterService.subscribe(input.email);
             console.log(input)
             setError(initialValidate)
             e.target.reset()
