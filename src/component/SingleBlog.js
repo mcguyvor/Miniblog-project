@@ -5,7 +5,9 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import FeedService from '../service/FeedService';
 import likeIcon from '../media/thumbs-up.png';
+import likeIconFill from '../media/thumbs-up-hand-symbol.png';
 import {useSelector,useDispatch} from'react-redux';
+import { withRouter } from "react-router-dom";
 
 const SingleBlog = (props) => {
     const mockUrl1 = 'https://images.unsplash.com/photo-1575438481582-b971d5a00fb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
@@ -22,7 +24,12 @@ const SingleBlog = (props) => {
 
     const isLogIn = useSelector(state => state.isLogIn);
 
+    const userInfo = useSelector(state => state.userInfo.user);
+
+    const [wasLike,setWasLike] = useState(false); 
+
     const feedService = new FeedService();
+
 
     
     
@@ -50,9 +57,28 @@ const SingleBlog = (props) => {
     },
     [props.match.params]) // rerender when params ID change
 
+
+    const toRegister = () =>{
+       props.history.push('/register');
+    };
+    
+
     const singleBlogLike = async() =>{
         
+        if(detail._id === userInfo._id){
+            return ;
+        }else if(wasLike){
+            await postService.unlikePost(detail._id);
+            setWasLike(!wasLike);
+            const data = await postService.getPost(props.match.params.id);
+            setDetail(data.post);
+        }else{ 
         await postService.likePost(detail._id);
+        setWasLike(!wasLike);
+        const data = await postService.getPost(props.match.params.id);
+        setDetail(data.post);
+        }
+        
     }
     
     const renderCoverImg = () => {
@@ -129,10 +155,18 @@ const SingleBlog = (props) => {
                     <div style={{display:'inline-block'}}>
 
                         <p>Categories: 
+                            
                             <Link to="#">{detail && detail.category}
                             </Link>
-                            <img src={likeIcon} alt='Like' style={{width: '1rem', marginLeft:'10px'}}/>
+
+                            {wasLike? 
+                            <img src={likeIconFill} alt='LikeFill' style={{width: '1rem', marginLeft:'10px'}} onClick={singleBlogLike}/>
+                            :
+                            <img src={likeIcon} alt='Like' style={{width: '1rem', marginLeft:'10px'}} onClick={()=> isLogIn? singleBlogLike() : toRegister()}/>
+                            }
+
                             <span>({detail?  detail.likeInfo.count : null})</span>
+                        
                         </p>
 
                     </div>
@@ -255,4 +289,4 @@ const SingleBlog = (props) => {
         </div>
     )
 }
-export default SingleBlog
+export default withRouter(SingleBlog);

@@ -55,24 +55,7 @@ const Main = () =>{
     },[])
     
 
-    /*useEffect(()=>{
-        const getUser = async () =>{
-            try{
-           const profile = await service.getProfile();
-
-           console.log('user profile',profile);
-
-            setUserProfile(profile);
-
-                if(profile){
-                    setIsLogin(!isLogIn); // setstate of isLogin inorder to pass it to nav component
-                }
-            }catch(error){
-                console.log(error.message);
-            }
-        }
-        getUser();
-   },[]) */
+    
 
     const renderTop = () => {
         return (

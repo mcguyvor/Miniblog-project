@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import UserSessionService from '../service/UserSessionService'
+import Nav from './common/Nav';
 const Register = (props) => {
     const initialInput = { email: '', password: '', displayName: '' }
 
@@ -96,6 +97,7 @@ const Register = (props) => {
     }
     return (
         <div>
+            <Nav/>
             {renderRegisterForm()}
         </div>
     )
