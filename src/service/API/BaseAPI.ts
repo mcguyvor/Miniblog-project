@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import { HTTPResponse, Response, ResponseStatus, ErrorResponse } from './Response'
-import authProvider from '../FirebaseAuthProvider'
+import authProvider from '../provider/FirebaseAuthProvider'
 import * as querystring from 'querystring'
 
 interface RequestHeader {
