@@ -19,4 +19,8 @@ export default class PostService {
     async unlikePost(id: string): Promise<Post> {
         return this.postAPI.reactPost(id, Reaction.NONE)
     }
+
+    async commentPost(id: string, text: string): Promise<Post> {
+        return this.postAPI.commentPost(id, text)
+    }
 }
