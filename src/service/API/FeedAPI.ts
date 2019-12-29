@@ -21,7 +21,7 @@ interface FeedQueryString {
 export default class FeedAPI extends BaseAPI {
     private readonly BASE_PATH = '/feed'
 
-    private buildQuery(type: FeedType, page: number = 1, limit: number = 20, category?: string): FeedQueryString {
+    private buildQuery(type: FeedType, page: number, limit: number, category?: string): FeedQueryString {
         return {
             page,
             limit,
@@ -30,10 +30,16 @@ export default class FeedAPI extends BaseAPI {
         }
     }
 
-    async getFeed(type: FeedType, page: number = 1, limit: number = 20, category?: string): Promise<Post[]> {
-        this.setAuthTokenOptional()
+    async getFeed(type: FeedType, page: number, limit: number, category?: string): Promise<Post[]> {
+        await this.setAuthTokenOptional()
         const query = this.buildQuery(type, page, limit, category)
         const response = await this.get(this.BASE_PATH + Path.ALL, query)
+        return this.validateResponse(response)
+    }
+
+    async search(keyword: string, page: number, limit: number): Promise<Post[]> {
+        await this.setAuthTokenOptional()
+        const response = await this.get(this.BASE_PATH + Path.SEARCH, { keyword, page, limit })
         return this.validateResponse(response)
     }
 }
