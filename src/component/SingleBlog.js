@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Nav from './common/Nav'
-import PostService from '../service/postService'
+import PostService from '../service/PostService'
 import moment from 'moment';
 import {Link} from 'react-router-dom';
-import FeedService from '../service/feedService';
+import FeedService from '../service/FeedService';
 
 const SingleBlog = (props) => {
     const mockUrl1 = 'https://images.unsplash.com/photo-1575438481582-b971d5a00fb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
