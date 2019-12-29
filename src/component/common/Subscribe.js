@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NewsletterService from '../../service/newsletterService';
+import NewsletterService from '../../service/NewsletterService';
 
 const Subscribe = () => {
     const initialInput = { email: '' } 
