@@ -20,7 +20,9 @@ const SingleBlog = (props) => {
 
     const [detail, setDetail] = useState('');
 
-    const [popularPost,setPopularPost] = useState([]);
+    const [popularPost,setPopularPost] = useState('');
+
+    const [category,setCategory] = useState('');
 
     const feedService = new FeedService();
 
@@ -31,9 +33,23 @@ const SingleBlog = (props) => {
             setDetail(data.post);
             const fetchPopularPost = await feedService.getFeedTop(1,3);
             setPopularPost(fetchPopularPost);
+
+            const categoryTechFetch = await feedService.getFeedNew(1,100,'Technology');
+            const categoryFinanceFetch = await feedService.getFeedNew(1,100,'Finance');
+            const categoryIndustrialFetch = await feedService.getFeedNew(1,100,'Industrial');
+            const categorySportFetch = await feedService.getFeedNew(1,100,'Sport');
+
+            setCategory({...category,
+                technology: categoryTechFetch.posts.length,
+                finance: categoryFinanceFetch.posts.length,
+                industrial: categoryIndustrialFetch.posts.length,
+                sport: categorySportFetch.posts.length,
+
+            })
         }
         fetch();
-    },[])
+    },
+    [props.match.params]) // rerender when params ID change
 
     
     const renderCoverImg = () => {
@@ -151,22 +167,52 @@ const SingleBlog = (props) => {
                 <div className="post-entry-sidebar">
 
                     <ul>
+                        
+                        {
+                           popularPost && popularPost.posts.map( idx=>
 
-                        <li>
-                            <Link to={`/article/`} >
-                                <img src="images/img_1.jpg" alt="Image placeholder" class="mr-4"/>
-                                    <div class="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                        <div class="post-meta">
-                                        <span class="mr-2">March 15, 2018 </span>
-                                        </div>
-                                    </div>
-                            </Link>
-                        </li>    
-                    
+                            <li key={idx._id}>
+                                    <Link to={`/article/${idx._id}`} >
+                                        <img src="images/img_1.jpg" alt="Image placeholder" className="mr-4"/>
+                                            <div className="text">
+
+                                                <h4>{idx.title}</h4>
+
+                                                <div className="post-meta">
+                                                    <span class="mr-2">{moment(idx.createdAt).format('LL')}</span>
+                                                </div>
+                                            
+                                            </div>
+                                    </Link>
+                                </li>    
+                            )
+                        }   
+
                     </ul>
                 
                 </div>
+            
+            </div>
+        )
+    }
+
+    const renderSidebarCategory = () =>{
+        //change a tag to Link when categoy page is finish
+        return( category &&
+            
+            <div className="sidebar-box">
+              
+              <h3 className="heading">Categories</h3>
+              
+              <ul className="categories">
+               
+                <li><a href="#">Technology <span>({category.technology})</span></a></li>
+                <li><a href="#">Finance <span>({category.finance})</span></a></li>
+                <li><a href="#">Industrial <span>({category.industrial})</span></a></li>
+                <li><a href="#">Sport <span>({category.sport})</span></a></li>              
+              
+              </ul>
+            
             </div>
         )
     }
@@ -182,6 +228,7 @@ const SingleBlog = (props) => {
                         <div className='col-md-12 col-lg-4 sidebar'>
                             {renderSidebarProfile()}
                             {renderSidebarPopularPost()}
+                            {renderSidebarCategory()}
                         </div>
                     </div>
                     {renderCategories()}
