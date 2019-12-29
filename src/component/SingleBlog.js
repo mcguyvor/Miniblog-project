@@ -5,15 +5,10 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import FeedService from '../service/FeedService';
 import likeIcon from '../media/thumbs-up.png';
+import {useSelector,useDispatch} from'react-redux';
 
 const SingleBlog = (props) => {
     const mockUrl1 = 'https://images.unsplash.com/photo-1575438481582-b971d5a00fb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
-
-    const mockUrl2 = 'https://images.unsplash.com/photo-1575403071054-56585330a0ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80'
-
-    const mockUrl3 = 'https://images.unsplash.com/photo-1575410226902-dcfe1279f1a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'
-
-    const mockUrl4 = 'https://images.unsplash.com/photo-1575399545768-5f1840c1312d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80'
 
     const mockUserImg = 'https://images.unsplash.com/photo-1575410236084-db61fcf7fea8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'
     
@@ -25,8 +20,11 @@ const SingleBlog = (props) => {
 
     const [category,setCategory] = useState('');
 
+    const isLogIn = useSelector(state => state.isLogIn);
+
     const feedService = new FeedService();
 
+    
     
     useEffect(()=>{
         const fetch = async()=>{
@@ -52,6 +50,10 @@ const SingleBlog = (props) => {
     },
     [props.match.params]) // rerender when params ID change
 
+    const singleBlogLike = async() =>{
+        
+        await postService.likePost(detail._id);
+    }
     
     const renderCoverImg = () => {
 
@@ -119,13 +121,22 @@ const SingleBlog = (props) => {
             )
     }
 
-    const renderCategories = () =>{
+    const renderCategoriesAndLike = () =>{
         return(
 
                 <div className="pt-5">
 
-                    <p>Categories:  <Link to="#">{detail && detail.category}</Link></p>
-                
+                    <div style={{display:'inline-block'}}>
+
+                        <p>Categories: 
+                            <Link to="#">{detail && detail.category}
+                            </Link>
+                            <img src={likeIcon} alt='Like' style={{width: '1rem', marginLeft:'10px'}}/>
+                            <span>({detail?  detail.likeInfo.count : null})</span>
+                        </p>
+
+                    </div>
+                   
                 </div>
 
         )
@@ -218,14 +229,7 @@ const SingleBlog = (props) => {
         )
     }
 
-    const renderLike = () =>{
-        return(
-            
-            <div className='sidebar-box'>
-                <img src={likeIcon} alt='Like'/>
-            </div>
-        )
-    }
+  
 
     return (
         <div>
@@ -241,7 +245,7 @@ const SingleBlog = (props) => {
                             {renderSidebarCategory()}
                         </div>
                     </div>
-                    {renderCategories()}
+                    {renderCategoriesAndLike()}
                 </div>
                 
             </section>

@@ -1,4 +1,4 @@
-import BaseAPI from './baseAPI'
+import BaseAPI from './BaseAPI'
 import NewsletterSubscriber from '../../model/NewsletterSubscriber'
 
 enum Path {

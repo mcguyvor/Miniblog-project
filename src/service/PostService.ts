@@ -1,5 +1,5 @@
 import Post, { Reaction } from '../model/Post'
-import PostAPI, { PostInfo } from './api/PostAPI'
+import PostAPI, { PostInfo } from './API/PostAPI'
 
 export default class PostService {
     private postAPI = new PostAPI()

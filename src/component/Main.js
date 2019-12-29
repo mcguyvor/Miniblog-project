@@ -5,7 +5,6 @@ import Subscribe from '../component/common/Subscribe';
 import '../style/Main.css';
 import UserSessionService from '../service/UserSessionService';
 import {useDispatch,useSelector} from 'react-redux';
-import {isLogIn} from '../action/index';
 import FeedService from '../service/FeedService';
 import moment from 'moment';
 const Main = () =>{
@@ -15,9 +14,7 @@ const Main = () =>{
 
     //const [userProfile,setUserProfile] = useState();
     
-    const dispath = useDispatch();
-
-    const service = UserSessionService.shared
+ 
     
     const feedService = new FeedService();
 
@@ -33,30 +30,7 @@ const Main = () =>{
 
     
     useEffect(()=>{
-        const checkLogIn = async() => {
-            //check login firebase state
-             await service.authStateEvent.on('login',(user)=>{
-                //alert('LOGGED IN');
-                 dispath(isLogIn());
-                console.log(user)
-            });
-
-            //check log out firebase state
-            await service.authStateEvent.on('login',(user)=>{
-                //alert('LOGGED IN');
-                console.log(user)
-            });
-
-            await service.authStateEvent.on('login',(user)=>{
-                //alert('LOGGED IN');
-                console.log(user)
-            });
-
-            service.authStateEvent.on('error', (error) => {
-                alert(error.message)
-            })
-
-        }
+        
 
         const fetchTopFeed = async() =>{
             const topFeed = await feedService.getFeedTop(topFeedPage,5)
@@ -73,7 +47,6 @@ const Main = () =>{
 
         
 
-        checkLogIn();
 
         fetchNewFeed();
 

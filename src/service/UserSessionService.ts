@@ -1,7 +1,7 @@
-import AccountAPI from './api/AccountAPI'
+import AccountAPI from './API/AccountAPI'
 import User from '../model/User'
-import authProvider from './provider/firebaseAuthProvider'
-import AuthStateEvent from './provider/authStateEvent'
+import authProvider from './provider/FirebaseAuthProvider'
+import AuthStateEvent from './provider/AuthStateEvent'
 import { EventEmitter } from 'events'
 
 export default class UserSessionService {

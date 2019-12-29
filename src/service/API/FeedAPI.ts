@@ -1,4 +1,4 @@
-import BaseAPI from './baseAPI'
+import BaseAPI from './BaseAPI'
 import Post from '../../model/Post'
 
 export enum FeedType {

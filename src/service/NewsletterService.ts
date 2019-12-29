@@ -1,5 +1,5 @@
 import NewsletterSubscriber from '../model/NewsletterSubscriber'
-import NewsletterAPI from './api/NewsletterAPI'
+import NewsletterAPI from './API/NewsletterAPI'
 
 export default class NewsletterService {
     private readonly newsletterAPI = new NewsletterAPI()
