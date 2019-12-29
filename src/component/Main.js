@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react';
+import {Link} from 'react-router-dom';
 import Nav from './common/Nav';
 import Subscribe from '../component/common/Subscribe';
 import '../style/Main.css';
@@ -27,8 +28,6 @@ const Main = () =>{
     const [newFeedPage,setNewFeedPage] = useState(1);
 
     const [topFeedPage,setTopFeedPage] = useState(1);
-
-
 
     console.log("is ", topFeed.length!==0? true : false)
 
@@ -119,13 +118,13 @@ const Main = () =>{
                         <div className="col-md-4">
                            {topFeed.slice(0,2).map(idx => {
                                 return(
-                                    <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{ backgroundImage: idx.content.imgUrl1? `url(${idx.content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
+                                    <Link to={`/article/${idx._id}`} className="h-entry mb-30 v-height gradient hvr-float" style={{ backgroundImage: idx.content.imgUrl1? `url(${idx.content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
 
                                     <div className="text">
                                         <h2>{idx.title}</h2>
                                         <span className="date">{moment(idx.createdAt).format('LL')}</span>
                                     </div>
-                                </a>
+                                </Link>
                                 )
                             })}
                         
@@ -134,7 +133,7 @@ const Main = () =>{
                         // for middle part of hot
                         }
                         <div className="col-md-4">
-                            <a href="single.html" className="h-entry img-5 h-100 gradient hvr-float" style={{ backgroundImage: topFeed[2].content.imgUrl1? `url(${topFeed[2].content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
+                            <Link to={`/article/${topFeed[2]._id}`} className="h-entry img-5 h-100 gradient hvr-float" style={{ backgroundImage: topFeed[2].content.imgUrl1? `url(${topFeed[2].content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
 
                                 <div className="text">
                                     <div className="post-categories mb-3">
@@ -144,7 +143,7 @@ const Main = () =>{
                                     { <h2>{topFeed[2].title}</h2>}
                                     <span className="date">{moment(topFeed[2].createdAt).format('LL')}</span>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="col-md-4">
@@ -152,13 +151,13 @@ const Main = () =>{
                             {topFeed.slice(3).map(idx=>{
 
                                         return(
-                                            <a href="single.html" className="h-entry mb-30 v-height gradient hvr-float" style={{ backgroundImage: idx.content.imgUrl1? `url(${idx.content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
+                                            <Link to={`/article/${idx._id}`} className="h-entry mb-30 v-height gradient hvr-float" style={{ backgroundImage: idx.content.imgUrl1? `url(${idx.content.imgUrl1})`:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpiIypWT4z3txyPgoTvVXBTaxUO3nzTCIFKD_hlrwIaS_ZlQsG)' }}>
 
                                             <div className="text">
                                                 <h2>{idx.title}</h2>
                                                 <span className="date">{moment(idx.createdAt).format('LL')}</span>
                                             </div>
-                                        </a>
+                                        </Link>
                                         )
                                     }
                                 )    
@@ -238,7 +237,7 @@ const Main = () =>{
                                             </div>
                                 </div>
                                 <div className="card-footer">
-                                  <small>Readmore</small>
+                                  <Link to={`/article/${idx._id}`}><small>Readmore</small></Link>
                                 </div>
                               </div>
                                 
