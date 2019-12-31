@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Fade } from 'reactstrap'
-import '../../style/Nav.css'
-import Search from '../../media/search.png'
-import LoginIcon from '../../media/user.png'
-import UserLogInIcon from '../../media/man-user.png'
-import UserLogOutIcon from '../../media/logout.png'
-import AddBlogIcon from '../../media/add.png'
-import Popover from 'react-tiny-popover'
-import { userInfo } from '../../action/index'
-import UserSessionService from '../../service/UserSessionService'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Fade } from 'reactstrap';
+import '../../style/Nav.css';
+import Search from '../../media/search.png';
+import LoginIcon from '../../media/user.png';
+import UserLogInIcon from '../../media/man-user.png';
+import UserLogOutIcon from '../../media/logout.png';
+import AddBlogIcon from '../../media/add.png';
+import Popover from 'react-tiny-popover';
+import { userInfo } from '../../action/index';
+import UserSessionService from '../../service/UserSessionService';
+import FeedService from '../../service/FeedService';
 import {isLogOut} from '../../action/index';
+
 const Nav = (props) => {
     // const logIn = props.isLogIn;
 
@@ -25,7 +27,12 @@ const Nav = (props) => {
 
     const [isPopOverOpen, setIsPopOverOpen] = useState(false)
 
-    const service = UserSessionService.shared
+    const [searchInput, setSearchInput] = useState('');
+
+
+    const service = UserSessionService.shared;
+
+    const feedService = new FeedService();
 
     const dispatch = useDispatch()
 
@@ -47,6 +54,23 @@ const Nav = (props) => {
     }
 
     , [logIn])
+
+
+    const handleChange = (e) =>{
+        setSearchInput(e.target.value);
+    }
+
+    const handleSearch = async(e) =>{
+        e.preventDefault();
+        const test = await feedService.searchFeed(searchInput,1,10);
+        console.log(test)
+        props.history.push(`/search/${searchInput}`);
+    }
+
+
+    const handleHideSearch = () =>{
+        setOpenSearch(!openSearch)
+    }
 
     const renderIsLogInIcon = () => {
         if (user) {
@@ -117,16 +141,23 @@ const Nav = (props) => {
     const renderNavSearch = () => {
         return (
             <Fade in={openSearch} className='mt-3' >
-                <form>
+                
                     <div className="form-group row ml-4">
-                        <div className="col-sm-10 col-10">
-                            <input type="text" className="form-control-plaintext" id="searchbar" placeholder='Type and enter'/>
+                        <form onSubmit={handleSearch} className="col-sm-10 col-10">
+                            
+
+                            <input type="text" className="form-control-plaintext" id="searchbar" placeholder='Type and enter' onChange={handleChange} value={searchInput}/>
+                            
+                        </form>
+
+                        <div className='col-sm-2 col-2 pt-4'>
+
+                            <button onClick ={handleHideSearch}><i className="fa fa-times button" aria-hidden="true"></i></button>
+                        
                         </div>
-                        <div className='col-sm-2 col-2 pt-2'>
-                            <button onClick ={() => setOpenSearch(!openSearch)}><i className="fa fa-times button" aria-hidden="true"></i></button>
-                        </div>
+                    
                     </div>
-                </form>
+                
             </Fade>
 
         )
