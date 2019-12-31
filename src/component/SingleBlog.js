@@ -22,6 +22,8 @@ const SingleBlog = (props) => {
 
     const [category,setCategory] = useState('');
 
+    const [commentList,setCommentList] = useState('');
+
     const isLogIn = useSelector(state => state.isLogIn);
 
     const userInfo = useSelector(state => state.userInfo.user);
@@ -44,6 +46,7 @@ const SingleBlog = (props) => {
             const categoryFinanceFetch = await feedService.getFeedNew(1,100,'Finance');
             const categoryIndustrialFetch = await feedService.getFeedNew(1,100,'Industrial');
             const categorySportFetch = await feedService.getFeedNew(1,100,'Sport');
+            
 
             setCategory({...category,
                 technology: categoryTechFetch.posts.length,
@@ -176,6 +179,18 @@ const SingleBlog = (props) => {
         )
     }
 
+    const renderComment = () =>{
+        return(
+            <div className='pt-5'>
+                    
+                    <h3 class="mb-5">6 Comments</h3>
+                        <ul className='comment-list'>
+                            {}
+                        </ul>
+            </div>
+        )
+    }
+
     const renderSidebarProfile = () =>{
         
         return( 
@@ -270,16 +285,23 @@ const SingleBlog = (props) => {
             <Nav/>
             {detail &&renderCoverImg()}
             <section  className="site-section py-lg">
+                
                 <div  className="container">
+                    
                     <div className="row blog-entries element-animate">
+                        
                         {renderMainSection()}
+                        
                         <div className='col-md-12 col-lg-4 sidebar'>
                             {renderSidebarProfile()}
                             {renderSidebarPopularPost()}
                             {renderSidebarCategory()}
                         </div>
+                    
                     </div>
+                    
                     {renderCategoriesAndLike()}
+                    
                 </div>
                 
             </section>
