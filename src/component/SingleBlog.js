@@ -7,8 +7,8 @@ import FeedService from '../service/FeedService';
 import likeIcon from '../media/thumbs-up.png';
 import likeIconFill from '../media/thumbs-up-hand-symbol.png';
 import {useSelector,useDispatch} from'react-redux';
-import { withRouter } from "react-router-dom";
-
+import LeaveComment from './common/LeaveComment';
+import '../style/Main.css';
 const SingleBlog = (props) => {
     const mockUrl1 = 'https://images.unsplash.com/photo-1575438481582-b971d5a00fb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
 
@@ -22,13 +22,13 @@ const SingleBlog = (props) => {
 
     const [category,setCategory] = useState('');
 
-    const [commentList,setCommentList] = useState('');
-
     const isLogIn = useSelector(state => state.isLogIn);
 
     const userInfo = useSelector(state => state.userInfo.user);
 
     const [wasLike,setWasLike] = useState(false); 
+
+    const [addComment,fetchComment] = useState(false);
 
     const feedService = new FeedService();
 
@@ -47,6 +47,7 @@ const SingleBlog = (props) => {
             const categoryIndustrialFetch = await feedService.getFeedNew(1,100,'Industrial');
             const categorySportFetch = await feedService.getFeedNew(1,100,'Sport');
             
+            fetchComment(false);
 
             setCategory({...category,
                 technology: categoryTechFetch.posts.length,
@@ -58,11 +59,11 @@ const SingleBlog = (props) => {
         }
         fetch();
     },
-    [props.match.params]) // rerender when params ID change
+    [props.match.params,addComment]) // rerender when params ID change 
 
 
     const toRegister = () =>{
-       props.history.push('/register');
+       props.history.push('/login');
     };
     
 
@@ -163,9 +164,9 @@ const SingleBlog = (props) => {
                             </Link>
 
                             {wasLike? 
-                            <img src={likeIconFill} alt='LikeFill' style={{width: '1rem', marginLeft:'10px'}} onClick={singleBlogLike}/>
+                            <img src={likeIconFill} alt='LikeFill' style={{width: '1rem', marginLeft:'10px'}} onClick={singleBlogLike} className='hvr-float'/>
                             :
-                            <img src={likeIcon} alt='Like' style={{width: '1rem', marginLeft:'10px'}} onClick={()=> isLogIn? singleBlogLike() : toRegister()}/>
+                            <img src={likeIcon} alt='Like' style={{width: '1rem', marginLeft:'10px'}} onClick={()=> isLogIn? singleBlogLike() : toRegister()} className='hvr-float'/>
                             }
 
                             <span>({detail?  detail.likeInfo.count : null})</span>
@@ -181,15 +182,40 @@ const SingleBlog = (props) => {
 
     const renderComment = () =>{
         return(
+           
             <div className='pt-5'>
                     
-                    <h3 class="mb-5">6 Comments</h3>
+                    <h3 class="mb-5">{detail && detail.commentInfo.count} Comments</h3>
                         <ul className='comment-list'>
-                            {}
+                            { detail&& detail.commentInfo.count > 0?
+                             
+                                detail.commentInfo.comments.map(idx=>
+                                    <li className="comment">
+                                        
+                                        <div className="vcard">
+                                            <img src="https://siamrath.co.th/files/styles/1140/public/img/20190811/1bebd9268892945e74b2ba669a881b7071250b816cb97cc053111463718ccb5c.jpg?itok=kRopIDa0" alt="user display image"/>
+                                        </div>
+
+                                        <div className="comment-body">
+                                        <h3>user display name</h3>
+                                            <div className="meta">January 9, 2018 at 2:21pm</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                        </div>
+                                    </li>
+                                    )
+
+                                    :
+                                    
+                                    null
+                             
+                             }
+                        
                         </ul>
             </div>
         )
     }
+
+   
 
     const renderSidebarProfile = () =>{
         
@@ -201,7 +227,7 @@ const SingleBlog = (props) => {
                     
                     <div className="bio text-center">
                         
-                        <img src="https://siamrath.co.th/files/styles/1140/public/img/20190811/1bebd9268892945e74b2ba669a881b7071250b816cb97cc053111463718ccb5c.jpg?itok=kRopIDa0" alt="Image Placeholder" className="img-fluid mb-5"/>
+                        <img src="https://siamrath.co.th/files/styles/1140/public/img/20190811/1bebd9268892945e74b2ba669a881b7071250b816cb97cc053111463718ccb5c.jpg?itok=kRopIDa0" alt="blog owner image" className="img-fluid mb-5"/>
                             
                             <div className="bio-body">
                                 <h2>{detail.creator.displayName}</h2>
@@ -301,6 +327,8 @@ const SingleBlog = (props) => {
                     </div>
                     
                     {renderCategoriesAndLike()}
+                    {renderComment()}
+                    <LeaveComment _id={props.match.params.id} {...props}/>
                     
                 </div>
                 
@@ -311,4 +339,4 @@ const SingleBlog = (props) => {
         </div>
     )
 }
-export default withRouter(SingleBlog);
+export default SingleBlog;
