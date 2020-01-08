@@ -13,6 +13,8 @@ import { userInfo } from '../../action/index';
 import UserSessionService from '../../service/UserSessionService';
 import FeedService from '../../service/FeedService';
 import {isLogOut} from '../../action/index';
+import { createHashHistory }  from 'history';
+
 
 const Nav = (props) => {
     // const logIn = props.isLogIn;
@@ -35,6 +37,9 @@ const Nav = (props) => {
     const feedService = new FeedService();
 
     const dispatch = useDispatch()
+
+    const history = createHashHistory()
+
 
     /* useEffect(()=>{
         setIsLogIn(props.isLogIn)
@@ -60,13 +65,19 @@ const Nav = (props) => {
         setSearchInput(e.target.value);
     }
 
+    const redirect = () =>{
+        history.push(`/search/${searchInput}`);
+    }
+
     const handleSearch = async(e) =>{
         e.preventDefault();
         const test = await feedService.searchFeed(searchInput,1,10);
-        console.log(test)
-        props.history.push(`/search/${searchInput}`);
+        console.log(test);
+        console.log(props);
+        redirect();
     }
 
+    
 
     const handleHideSearch = () =>{
         setOpenSearch(!openSearch)
@@ -150,7 +161,7 @@ const Nav = (props) => {
                             
                         </form>
 
-                        <div className='col-sm-2 col-2 pt-4'>
+                        <div className='col-sm-2 col-2 pt-2'>
 
                             <button onClick ={handleHideSearch}><i className="fa fa-times button" aria-hidden="true"></i></button>
                         

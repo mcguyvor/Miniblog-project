@@ -8,7 +8,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import FeedService from '../service/FeedService';
 import moment from 'moment';
 import Loading from './common/Loading';
-const Main = () =>{
+const Main = (props) =>{
 
 
     //const [isLogIn,setIsLogin] = useState(false);
@@ -274,7 +274,7 @@ const Main = () =>{
     }
     return (
         <div>
-            <Nav />
+            <Nav {...props}/>
             {isLoading? 
                 <Loading/>
                 :

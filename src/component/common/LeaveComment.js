@@ -4,7 +4,6 @@ import PostService from '../../service/PostService';
 import UserSessionService from '../../service/UserSessionService';
 import {isLogIn} from '../../action/index';
 import {Modal,Button} from 'react-bootstrap';
-import { Redirect } from 'react-router-dom'
 const LeaveComment = (props) =>{
 
     const [input,setInput] = useState('');
