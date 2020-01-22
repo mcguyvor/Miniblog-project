@@ -14,6 +14,8 @@ import './css/jquery-ui.css'
 import './fonts/flaticon/font/flaticon.css'
 import './css/aos.css'
 import './css/style.css'
+
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducer, {}, composeEnhancers(applyMiddleware(thunk))) // redux enhance for inspect dev tool
-ReactDOM.render(<Provider store={store}><BrowserRouter><App/></BrowserRouter></Provider>, document.getElementById('root'))
+ReactDOM.render(<Provider store={store}><BrowserRouter ><App/></BrowserRouter></Provider>, document.getElementById('root'))

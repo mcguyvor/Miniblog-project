@@ -174,20 +174,22 @@ const Main = (props) =>{
                         {newFeed.slice(0,3).map(idx=>{
                             return(
                                 <div className="card">
-                                <img className="card-img-top" src={idx.content.imgUrl1} alt="Card image cap"/>
-                                <div className="card-body">
-                                    <span className="post-category text-white bg-secondary mb-3">{idx.category}</span>
-                                    <h5 className="card-title">{idx.title.slice(0,100)}</h5>
-                                    <p className="card-text">{`${idx.content.detail1.slice(0,100)}...`}</p>
-                                    <div className="post-meta align-items-center text-left clearfix">
-                                                <span className="d-inline-block mt-1">By <a href="#">{idx.creator.displayName}</a></span>
-                                                <span>&nbsp;-&nbsp; {moment(idx.createdAt).format('LL')}</span>
-                                            </div>
+                                    
+                                    <img className="card-img-top img-fluid " src={idx.content.imgUrl1} alt="Card image cap"/>
+                                    
+                                    <div className="card-body">
+                                        <span className="post-category text-white bg-secondary mb-3">{idx.category}</span>
+                                        <h5 className="card-title">{idx.title.slice(0,100)}</h5>
+                                        <p className="card-text">{`${idx.content.detail1.slice(0,100)}...`}</p>
+                                        <div className="post-meta align-items-center text-left clearfix">
+                                                    <span className="d-inline-block mt-1">By <a href="#">{idx.creator.displayName}</a></span>
+                                                    <span>&nbsp;-&nbsp; {moment(idx.createdAt).format('LL')}</span>
+                                                </div>
+                                    </div>
+                                    <div className="card-footer">
+                                    <Link to={`/article/${idx._id}`}><small>Readmore</small></Link>
+                                    </div>
                                 </div>
-                                <div className="card-footer">
-                                  <Link to={`/article/${idx._id}`}><small>Readmore</small></Link>
-                                </div>
-                              </div>
                                 
                             )
                         })}

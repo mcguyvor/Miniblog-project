@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import Main from './component/Main';
 import CreateBlog from './component/CreateBlog';
 import { Route, Switch } from 'react-router-dom';
@@ -6,7 +6,7 @@ import LogInPage from './component/LogInPage';
 import Register from './component/Register';
 import SingleBlog from './component/SingleBlog';
 import SearchResult from './component/SearchResult';
-import {useSelector,useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import UserSessionService from './service/UserSessionService';
 import {isLogIn} from './action/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -55,10 +55,10 @@ const App= () => {
             <Route exact path = '/login' component = {LogInPage} />
             <Route exact path = '/register' component = {Register} />
             <Route exact path = '/article/:id' component ={SingleBlog}/>
-            <Route exact path = '/search/:searchKey' component ={SearchResult}/>
+            <Route exact path = '/search/:tech' component ={SearchResult}/>
 
         </Switch>
-    )
+    );
 }
 
-export default App
+export default App;

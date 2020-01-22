@@ -28,3 +28,7 @@
 .as-text:hover{
   color: rgba(0, 115, 255, 0.899);
 }
+
+.img-top{
+  object-fit: cover;
+}

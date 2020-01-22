@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Fade } from 'reactstrap';
 import '../../style/Nav.css';
 import Search from '../../media/search.png';
@@ -38,7 +38,7 @@ const Nav = (props) => {
 
     const dispatch = useDispatch()
 
-    const history = createHashHistory()
+   // const history = createHashHistory()
 
 
     /* useEffect(()=>{
@@ -66,7 +66,9 @@ const Nav = (props) => {
     }
 
     const redirect = () =>{
-        history.push(`/search/${searchInput}`);
+       // history.replace(`/search/${searchInput}`);
+       props.history.push(`/search/${searchInput}`);
+       console.log('props',props.history);
     }
 
     const handleSearch = async(e) =>{
