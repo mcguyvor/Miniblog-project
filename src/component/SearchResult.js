@@ -4,9 +4,13 @@ import Nav from './common/Nav';
 import Subscribe from './common/Subscribe';
 import SearchResultItems from './SearchResultItems';
 import {Link} from 'react-router-dom';
+import Loading from './common/Loading';
 const SearchResult = (props) =>{
 
     const [searchResult, setSearchResult] = useState('');
+
+    const [isLoading,setIsLoading] = useState(true);
+
 
     const service = new FeedService();
     useEffect(()=>{
@@ -14,12 +18,12 @@ const SearchResult = (props) =>{
         const fetch = async() =>{
             const data = await service.searchFeed(props.match.params.tech,1,20);
             setSearchResult(data.posts);
+            setIsLoading(false)
         }
         
         fetch(); 
         console.log('In search result',props.match.params.tech)
         
-
     },[]);
 
     
@@ -27,7 +31,9 @@ const SearchResult = (props) =>{
 
         <div>
             <Nav/>
-            <SearchResultItems searchResult={searchResult}/>
+           {isLoading? <Loading/> : 
+           <SearchResultItems searchResult={searchResult}/>
+           }
             <Subscribe/>
         </div>
     )
