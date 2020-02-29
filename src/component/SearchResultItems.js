@@ -1,4 +1,5 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 const SearchResultItems = ({searchResult}) =>{
 
@@ -16,19 +17,22 @@ const SearchResultItems = ({searchResult}) =>{
                     {
                     searchResult && searchResult.map(idx=>(
 
+                       
                                 <div className='col-md-12'>
-                                    <div className='card'>
-                                        <div className='card-body'>
+                                     <Link to={`/article/${idx._id}`}>
+                                        <div className='card mb-1'>
+                                            <div className='card-body'>
 
-                                            <h5 className='card-title'>{idx.title}</h5>
-                                            <p className='card-text'>{idx.content.detail1}</p>
-                                            <p className="card-text"><small class="text-muted">Like {idx.likeInfo.count} Comment {idx.commentInfo.count}</small></p>
+                                                <h5 className='card-title'>{idx.title}</h5>
+                                                <p className='card-text text-dark'>{idx.content.detail1}</p>
+                                                <p className="card-text text-muted"><small class="text-muted">Like {idx.likeInfo.count} Comment {idx.commentInfo.count}</small></p>
+
+                                            </div>
 
                                         </div>
-
-                                    </div>
+                                    </Link>
                                 </div>
-                        
+                      
 
                     ))
                     

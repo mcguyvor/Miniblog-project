@@ -23,14 +23,17 @@ const SearchResult = (props) =>{
         
         fetch(); 
         console.log('In search result',props.match.params.tech)
-        
-    },[]);
+        console.log('props in search result', props.history.push);
+        console.log('test',searchResult)
+
+        return ()=> fetch();
+    },[props.match.params.tech]);
 
     
     return(
 
         <div>
-            <Nav/>
+            <Nav {...props}/>
            {isLoading? <Loading/> : 
            <SearchResultItems searchResult={searchResult}/>
            }

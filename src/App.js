@@ -9,10 +9,11 @@ import SearchResult from './component/SearchResult';
 import {useDispatch} from 'react-redux';
 import UserSessionService from './service/UserSessionService';
 import {isLogIn} from './action/index';
+import Nav from './component/common/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const App= () => {
+const App= (props) => {
 
     const service = UserSessionService.shared
     
@@ -49,15 +50,18 @@ const App= () => {
     },[])
 
     return (
-        <Switch >
-            <Route exact path = '/' component = {Main} />
-            <Route exact path = '/createblog' component = {CreateBlog} />
-            <Route exact path = '/login' component = {LogInPage} />
-            <Route exact path = '/register' component = {Register} />
-            <Route exact path = '/article/:id' component ={SingleBlog}/>
-            <Route exact path = '/search/:tech' component ={SearchResult}/>
+        <div>
+            <Switch >
+                        <Route exact path = '/' component = {Main} />
+                        <Route exact path = '/createblog' component = {CreateBlog} />
+                        <Route exact path = '/login' component = {LogInPage} />
+                        <Route exact path = '/register' component = {Register} />
+                        <Route exact path = '/article/:id' component ={SingleBlog}/>
+                        <Route exact path = '/search/:tech' component ={SearchResult}/>
 
-        </Switch>
+                    </Switch>
+        </div>
+       
     );
 }
 

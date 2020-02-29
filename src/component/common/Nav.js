@@ -13,7 +13,6 @@ import { userInfo } from '../../action/index';
 import UserSessionService from '../../service/UserSessionService';
 import FeedService from '../../service/FeedService';
 import {isLogOut} from '../../action/index';
-import { createHashHistory }  from 'history';
 
 
 const Nav = (props) => {
@@ -182,4 +181,4 @@ const Nav = (props) => {
         </div>
     )
 }
-export default Nav
+export default Nav;
