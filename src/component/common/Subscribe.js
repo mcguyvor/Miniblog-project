@@ -47,13 +47,13 @@ const Subscribe = () => {
     }
 
     return (
-        <div className="site-section bg-lightx">
+        <div className="site-section  mb-5">
             <div className="container">
                 <div className="row justify-content-center text-center">
                     <div className="col-md-5">
                         <div className="subscribe-1 ">
                             <h2>Subscribe to our newsletter</h2>
-                            <p className="mb-5">Describe something</p>
+                            <p className="mb-2">Describe something</p>
                             <form className="d-flex" onSubmit={handleOnSubmit}>
                                 <input type="text"
                                     className="form-control"

@@ -13,7 +13,9 @@
     "bootstrap": "^4.4.1",
     "firebase": "^7.5.0",
     "history": "^4.10.1",
+    "mdbreact": "^4.25.5",
     "moment": "^2.24.0",
+    "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
@@ -25,6 +27,7 @@
     "reactstrap": "^8.1.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "scss": "^0.2.4",
     "typescript": "^3.7.3"
   },
   "scripts": {

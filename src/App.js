@@ -1,17 +1,15 @@
-import React,{useEffect} from 'react';
-import Main from './component/Main';
-import CreateBlog from './component/CreateBlog';
+import React,{useEffect, Fragment} from 'react';
+import Main from './page/Main';
+import CreateBlog from './page/CreateBlog';
 import { Route, Switch } from 'react-router-dom';
-import LogInPage from './component/LogInPage';
-import Register from './component/Register';
-import SingleBlog from './component/SingleBlog';
-import SearchResult from './component/SearchResult';
+import LogInPage from './page/LogInPage';
+import Register from './page/Register';
+import SingleBlog from './page/SingleBlog';
+import SearchResult from './page/SearchResult';
 import {useDispatch} from 'react-redux';
 import UserSessionService from './service/UserSessionService';
 import {isLogIn} from './action/index';
-import Nav from './component/common/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 const App= (props) => {
 
@@ -50,7 +48,7 @@ const App= (props) => {
     },[])
 
     return (
-        <div>
+        <Fragment>
             <Switch >
                         <Route exact path = '/' component = {Main} />
                         <Route exact path = '/createblog' component = {CreateBlog} />
@@ -60,7 +58,7 @@ const App= (props) => {
                         <Route exact path = '/search/:tech' component ={SearchResult}/>
 
                     </Switch>
-        </div>
+        </Fragment>
        
     );
 }
