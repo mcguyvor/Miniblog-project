@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 
 import './renderFeed-style.scss';
 
+import Skeleton from 'react-loading-skeleton';
+
+
 const renderFeed = (props) => {
     const feed = props.feed;
     const header = props.header
@@ -20,6 +23,7 @@ const renderFeed = (props) => {
                         const detail = feedItem.content.detail1.length>100? feedItem.content.detail1.slice(0,100):null;
                         const imgUrl = feedItem.content.imgUrl1? feedItem.content.imgUrl1:'https://www.helpscout.com/static/d1eb94dacf10b3fea085c4ef75bf1546/af747/september-2019-release-notes.webp';
                     return(
+                        
                         <div className='col-4'>
                             <div className='card-deck mb-4 '>
                                 <Link to={`/article/${feedItem._id}`}>

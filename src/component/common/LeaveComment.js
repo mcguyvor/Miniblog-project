@@ -10,9 +10,9 @@ const LeaveComment = (props) =>{
    
     const [isLoading, setLoading] = useState(false);
 
-    const [logIn,setLogIn] = useState(false);
-
     const isLogInState = useSelector(state => state.isLogIn);
+
+    const [logIn,setLogIn] = useState(isLogInState);
 
     const [comment,setComment] = useState('');
 
@@ -29,7 +29,7 @@ const LeaveComment = (props) =>{
             setLogIn(isLogInState);
         }
         fetch();
-    },[])
+    },[isLogInState])
     
     const handleChangeEmailPassWord =(e)=>{
             setInput({...input,
@@ -85,8 +85,6 @@ const LeaveComment = (props) =>{
             centered
             show={modalShow}
             onHide={()=> setModalShow(false)}
-            
-
             >
 
                 <Modal.Header closeButton>
@@ -143,9 +141,9 @@ const LeaveComment = (props) =>{
     }
    
     return(
-            <div className="comment-form-wrap pt-5">
-                <h3 className="mb-5">Leave a comment</h3>
-                <form className="p-5 bg-light" onSubmit={submitForm}>                
+            <div className="comment-form-wrap container">
+                <h3 className="mb-2">Leave a comment</h3>
+                <form className=" " onSubmit={submitForm}>                
                     
                     <div className="form-group">
                         <label htmlFor="message">Message</label>

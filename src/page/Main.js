@@ -1,6 +1,5 @@
 import React,{useEffect,useState , Fragment} from 'react';
 
-import {Link} from 'react-router-dom';
 
 import Nav from '../component/common/Nav';
 
@@ -8,13 +7,13 @@ import Subscribe from '../component/common/Subscribe';
 
 import FeedService from '../service/FeedService';
 
-import moment from 'moment';
-
 import Loading from '../component/common/Loading';
 
 import RenderFeed from '../component/renderFeed/RenderFeed';
 
 import Pagination from '../component/pagination/Pagination';
+
+import Loaded from '../component/skeleton/Loaded';
 
 const Main = (props) =>{
     const feedService = new FeedService();
@@ -23,9 +22,9 @@ const Main = (props) =>{
 
     const [topFeed, setTopFeed] = useState([]);
 
-    const [newFeedPage,setNewFeedPage] = useState(1);
-
     const [topFeedPage,setTopFeedPage] = useState(1);
+
+    const [newFeedPage,setNewFeedPage] = useState(1);
 
     const [isLoading,setIsLoading] = useState(true);
 
@@ -51,7 +50,7 @@ const Main = (props) =>{
        <Fragment>
            <Nav {...props}/>
            {isLoading? 
-                <Loading/>
+                <Loaded/>
                 :
                 <Fragment>
                     {topFeed.length!==0? <RenderFeed feed={topFeed} header={'Hot'}/>:null}

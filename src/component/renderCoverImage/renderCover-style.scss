@@ -1,0 +1,52 @@
+.cover{
+    width: 100vw;
+    height: 40vh;
+    background-color: #57b0fb;
+
+    .blog-hero{
+        display: flex;
+        flex-direction: row;
+        height:80%;
+        justify-content: space-between;
+
+        .blog-hero-info{
+            color:white;
+            padding-top: 40px;
+
+            h1{
+                font-size: 44px;
+            }
+
+            .user-info{
+                display: flex;                
+                .user-img{
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    margin-right: 20px;
+                    img{
+                        width: 42px;
+                        object-fit: cover;
+                        height: 42px;
+                        border-radius: 50%;
+                    }
+                }
+
+                .user-name{
+                   width: 240px;
+                }
+            }
+            
+        }
+
+        .blog-hero-img{
+            text-align: center;
+            justify-content: center;
+            img{
+                height:80%;
+
+            }
+        }
+    }
+
+}
