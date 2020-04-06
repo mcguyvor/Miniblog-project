@@ -1,4 +1,3 @@
-import Post from './Post'
 import User from './User'
 
 export interface CommentContentInfo {
@@ -11,8 +10,8 @@ export interface SubCommentInfo {
 }
 
 export interface CommentModel extends Document {
-    post: Post;
-    parent?: CommentModel;
+    post: string;
+    parent?: string;
     creator: User;
     content: CommentContentInfo;
     createdAt: Date;
