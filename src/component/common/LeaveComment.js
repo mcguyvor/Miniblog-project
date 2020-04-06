@@ -57,6 +57,7 @@ const LeaveComment = (props) =>{
             e.preventDefault();
         if(logIn){
             await service.commentPost(props._id,comment);
+            props.fetchComment(true);
             setComment('');
         }else{
             setModalShow(true);
