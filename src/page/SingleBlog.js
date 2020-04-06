@@ -76,9 +76,9 @@ const SingleBlog = (props) => {
 
             })
         }
-        fetch();
+         fetch();
     },
-    [props.match.params,addComment,detail]) // rerender when params ID change 
+    [props.match.params,addComment]) // rerender when params ID change 
 
 
     const toRegister = () =>{
@@ -155,7 +155,7 @@ const SingleBlog = (props) => {
                 <RenderInfoBlog detail ={detail} url={props.match.params.id}/>
                 <CategoryLike wasLike={wasLike} setWasLike={setWasLike} detail={detail} setDetail={setDetail} toRegister={toRegister} isLogIn={isLogIn} userInfo={userInfo} blogId={blogId}/>
                 <Comment detail={detail}/>
-                <LeaveComment _id={props.match.params.id} {...props}/>
+                <LeaveComment _id={props.match.params.id} {...props} fetchComment={fetchComment}/>
                 <Subscribe/>
             </Fragment>
             }               

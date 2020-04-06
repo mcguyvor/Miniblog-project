@@ -47,19 +47,19 @@ const Main = (props) =>{
     },[])
    
    return(
-       <Fragment>
-           <Nav {...props}/>
-           {isLoading? 
-                <Loaded/>
-                :
-                <Fragment>
-                    {topFeed.length!==0? <RenderFeed feed={topFeed} header={'Hot'}/>:null}
-                    {newFeed.length!==0? <RenderFeed feed={newFeed} header={'Feed'}/>:null}
-                    <Pagination page={newFeedPage} setPage={setNewFeedPage}/>
-                    <Subscribe/>
-                </Fragment>
-            }
-       </Fragment>
+           <div style={{backgroundColor:'white'}}>
+            <Nav {...props}/>
+            {isLoading? 
+                    <Loaded/>
+                    :
+                    <Fragment>
+                        {topFeed.length!==0? <RenderFeed feed={topFeed} header={'Hot'}/>:null}
+                        {newFeed.length!==0? <RenderFeed feed={newFeed} header={'Feed'}/>:null}
+                        <Pagination page={newFeedPage} setPage={setNewFeedPage}/>
+                        <Subscribe/>
+                    </Fragment>
+                }
+             </div>
    )
 }
 export default Main
