@@ -50,10 +50,10 @@ const Main = (props) =>{
            <div style={{backgroundColor:'white'}}>
             <Nav {...props}/>
             {isLoading? 
-                    <Loaded/>
+                    <Loaded marginTop={'70px'}/>
                     :
                     <Fragment>
-                        {topFeed.length!==0? <RenderFeed feed={topFeed} header={'Hot'}/>:null}
+                        {topFeed.length!==0? <RenderFeed feed={topFeed} header={'Hot'} marginTop={'70px'}/>:null}
                         {newFeed.length!==0? <RenderFeed feed={newFeed} header={'Feed'}/>:null}
                         <Pagination page={newFeedPage} setPage={setNewFeedPage}/>
                         <Subscribe/>

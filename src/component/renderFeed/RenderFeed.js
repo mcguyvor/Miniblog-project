@@ -10,8 +10,9 @@ import Skeleton from 'react-loading-skeleton';
 const renderFeed = (props) => {
     const feed = props.feed;
     const header = props.header
+    const marginTop = props.marginTop;
     return (
-            <div className="container ">
+            <div className='container' style={{marginTop:`${marginTop}`}} >
                 <div className="row mb-2">
                     <div className="col-12">
                         <h4>{header}</h4>

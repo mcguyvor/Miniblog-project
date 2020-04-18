@@ -6,6 +6,7 @@ import LogInPage from './page/LogInPage';
 import Register from './page/Register';
 import SingleBlog from './page/SingleBlog';
 import SearchResult from './page/SearchResult';
+import Category from './page/Category';
 import {useDispatch} from 'react-redux';
 import UserSessionService from './service/UserSessionService';
 import {isLogIn} from './action/index';
@@ -56,6 +57,7 @@ const App= (props) => {
                         <Route exact path = '/register' component = {Register} />
                         <Route exact path = '/article/:id' component ={SingleBlog}/>
                         <Route exact path = '/search/:tech' component ={SearchResult}/>
+                        <Route exact path ='/category/:category' component={Category}/>
 
                     </Switch>
         </Fragment>

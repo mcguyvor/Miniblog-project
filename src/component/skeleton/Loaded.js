@@ -2,11 +2,12 @@ import React from 'react';
 
 import Skeleton from 'react-loading-skeleton';
 
-const Loaded = () =>{
+const Loaded = ({marginTop}) =>{
 
-  const loop = [1,2,3,4,5,6]
+  const loop = [1,2,3,4,5,6];
+
   return(
-    <div className='container'>
+    <div className='container' style={{marginTop:`${marginTop}`}}>
       <div className="row mb-2">
           <div className="col-12">
               <Skeleton width={100}  height={27}/>

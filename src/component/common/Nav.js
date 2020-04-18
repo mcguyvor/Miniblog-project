@@ -126,9 +126,9 @@ const Nav = (props) => {
 
     const renderNavBar = () => {
         return (
-            <nav className='navbar navbar-expand-lg navbar-light '>
+            <nav className='navbar navbar-expand-lg navbar-light fixed-top bg-light' >
 
-                <Link to ='/' className='navbar-brand nav-link nav-link-color-black'>Blog brand</Link>
+                <Link to ='/' className='navbar-brand nav-link nav-link-color-black'>Medium</Link>
 
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -136,10 +136,10 @@ const Nav = (props) => {
 
                 <div className="collapse navbar-collapse" id="navbarToggle">
                     <ul className='navbar-nav ml-auto mt-lg-0 mr-5'>
-                        <li className='nav-item'><Link to='/' className='nav-link nav-link-color-black mr-2'><strong>Technology</strong></Link></li>
-                        <li className='nav-item'><Link to='/' className='nav-link nav-link-color-black mr-2'><strong>Finance</strong></Link></li>
-                        <li className='nav-item'><Link to='/' className='nav-link nav-link-color-black mr-2'><strong>Industrial</strong></Link></li>
-                        <li className='nav-item'><Link to='/' className='nav-link nav-link-color-black mr-2'><strong>Sport</strong></Link></li>
+                        <li className='nav-item'><Link to='/category/Technology' className='nav-link nav-link-color-black mr-2'><strong>Technology</strong></Link></li>
+                        <li className='nav-item'><Link to='/category/Finance' className='nav-link nav-link-color-black mr-2'><strong>Finance</strong></Link></li>
+                        <li className='nav-item'><Link to='/category/Industrial' className='nav-link nav-link-color-black mr-2'><strong>Industrial</strong></Link></li>
+                        <li className='nav-item'><Link to='/category/Sport' className='nav-link nav-link-color-black mr-2'><strong>Sport</strong></Link></li>
                         <li className='nav-item'><Link className='nav-link nav-link-color-black mr-2' onClick={() => setOpenSearch(true)}><img src={Search} style={{ width: '1rem' }}/></Link></li>
 
                         <li className='nav-item'>{isLogIn? renderIsLogInIcon() : <Link to = '/login' className='nav-link nav-link-color-black mr-2'><img src={LoginIcon} style={{ width: '1.5rem' }}/></Link>}</li>
@@ -152,7 +152,7 @@ const Nav = (props) => {
 
     const renderNavSearch = () => {
         return (
-            <Fade in={openSearch} className='mt-3' >
+            <Fade in={openSearch} className='mt-3  fixed-top bg-white' >
                 
                     <div className="form-group row ml-4">
                         <form onSubmit={handleSearch} className="col-sm-10 col-10">
