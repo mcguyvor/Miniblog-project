@@ -3,8 +3,8 @@ import FeedService from '../service/FeedService';
 import Nav from '../component/common/Nav';
 import Subscribe from '../component/common/Subscribe';
 import SearchResultItems from '../component/searchResultItems/SearchResultItems';
-import {Link} from 'react-router-dom';
-import Loading from '../component/common/Loading';
+import Loaded from '../component/searchResultItems/Loaded';
+
 const SearchResult = (props) =>{
 
     const [searchResult, setSearchResult] = useState('');
@@ -32,7 +32,7 @@ const SearchResult = (props) =>{
 
         <div>
             <Nav {...props}/>
-           {isLoading? <Loading/> : 
+           {isLoading? <Loaded/> : 
            <SearchResultItems searchResult={searchResult} searchKey={searchKey}/>
            }
             <Subscribe/>

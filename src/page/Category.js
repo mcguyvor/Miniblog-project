@@ -6,9 +6,11 @@ import Nav from '../component/common/Nav';
 
 import CategoryItems from '../component/categoryItems/CategoryItem';
 
+import Loaded from '../component/categoryItems/Loaded';
+
 const Category = (props) =>{
 
-    const [items,setItems] = useState('');
+    const [items,setItems] = useState(null);
     
     const categoryName = props.match.params.category;
 
@@ -27,8 +29,8 @@ const Category = (props) =>{
     
     return(
         <Fragment>
-            <Nav/>
-            {items &&<CategoryItems items={items} categoryName={categoryName}/>}
+            <Nav {...props}/>
+            {items?<CategoryItems items={items} categoryName={categoryName}/>:<Loaded/>}
         </Fragment>
     );
 }

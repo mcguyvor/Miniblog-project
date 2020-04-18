@@ -6,6 +6,8 @@ import moment from 'moment';
 
 import './category-item.scss';
 
+import Skeleton from 'react-loading-skeleton';
+
 const CategoryItem = ({items, categoryName}) =>{
 
     const defaultThumbnail = 'https://www.helpscout.com/static/d1eb94dacf10b3fea085c4ef75bf1546/af747/september-2019-release-notes.webp';
@@ -28,7 +30,7 @@ const CategoryItem = ({items, categoryName}) =>{
                                 <img className="align-self-start mr-3 item-img" src={img} alt='blog-thumbnail' />
                                 <div className="media-body">
                                     <h5 className="mt-0">{title}</h5>
-                                    <p>{detail1}</p>
+                                    <p>{detail1.length>100? `${detail1.slice(0,100)}...`: detail1}</p>
                                     <div className='mb-0 align-self-end'>
                                     <p className="text-muted mb-0"><small>{moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</small></p>
                                     <p className="text-muted mb-2"><small>{`By ${displayName}`}</small></p>
