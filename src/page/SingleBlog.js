@@ -24,6 +24,7 @@ import Comment from '../component/comment/Comment';
 
 import Subscribe from '../component/common/Subscribe';
 
+import Loaded from '../component/skeleton/SingleBlogLoaded';
 
 const SingleBlog = (props) => {
     
@@ -125,31 +126,11 @@ const SingleBlog = (props) => {
         )
     }
 
-    const renderSidebarCategory = () =>{
-        //change a tag to Link when categoy page is finish
-        return( category &&
-            
-            <div className="sidebar-box">
-              
-              <h3 className="heading">Categories</h3>
-              
-              <ul className="categories">
-               
-                <li><a href="#">Technology <span>({category.technology})</span></a></li>
-                <li><a href="#">Finance <span>({category.finance})</span></a></li>
-                <li><a href="#">Industrial <span>({category.industrial})</span></a></li>
-                <li><a href="#">Sport <span>({category.sport})</span></a></li>              
-              
-              </ul>
-            
-            </div>
-        )
-    }
 
     return(
         <Fragment >
-            <Nav/>
-            {detail &&
+            <Nav {...props}/>
+            {detail?
             <Fragment>
                 <RenderCover imgBg={mockUrl1} detail={detail} userImg={mockUserImg}/>
                 <RenderInfoBlog detail ={detail} url={props.match.params.id}/>
@@ -158,7 +139,7 @@ const SingleBlog = (props) => {
                 <LeaveComment _id={props.match.params.id} {...props} fetchComment={fetchComment}/>
                 <Subscribe/>
             </Fragment>
-            }               
+            : <Loaded/>}               
         </Fragment>
     )
 }

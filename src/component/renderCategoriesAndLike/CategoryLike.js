@@ -19,7 +19,7 @@ const CategoryLike = ({detail,wasLike, setWasLike,setDetail,toRegister,isLogIn, 
 
                     <p>Categories: 
                         
-                        <Link to="#">{detail && detail.category}
+                        <Link to={`/category/${detail.category}`}>{detail && detail.category}
                         </Link>
 
                         {wasLike? 
