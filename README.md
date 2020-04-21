@@ -1,1 +1,1 @@
-Website URL : https://miniblogmacboss.herokuapp.com/
+Website URL : https://miniblogmacboss.firebaseapp.com/
